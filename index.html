@@ -253,6 +253,47 @@
     flex: none;
   }
 
+  .services .eyebrow {
+    margin-bottom: 14px;
+  }
+
+  .chip-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    font-size: 13px;
+    padding: 6px 14px;
+    border: 1px solid var(--brass-line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+
+  .chip--link {
+    padding: 0;
+    border: none;
+  }
+
+  .chip--link a {
+    display: block;
+    padding: 6px 14px;
+    border: 1px solid var(--seal-soft);
+    border-radius: 999px;
+    color: var(--seal);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .chip--link a:hover,
+  .chip--link a:focus-visible {
+    background: var(--seal-soft);
+  }
+
   .dossier .eyebrow {
     margin-bottom: 14px;
   }
@@ -352,7 +393,27 @@
         </span>
         <span class="chev" aria-hidden="true">›</span>
       </button>
+      <a class="action-row" href="https://aiwellnesstw.github.io/ai-business-partner/" target="_blank" rel="noopener">
+        <span class="action-icon" aria-hidden="true">🩺</span>
+        <span class="action-text">
+          <span class="action-label">免費 AI 賦能健檢</span>
+          <span class="action-value">中租客戶專屬</span>
+        </span>
+        <span class="chev" aria-hidden="true">›</span>
+      </a>
     </nav>
+
+    <hr class="hairline" />
+
+    <section class="services">
+      <p class="eyebrow">服務項目</p>
+      <ul class="chip-list">
+        <li class="chip">企業貸款</li>
+        <li class="chip">中租保險</li>
+        <li class="chip">長短期租賃車</li>
+        <li class="chip chip--link"><a href="https://aiwellnesstw.github.io/" target="_blank" rel="noopener">仲安家健康好物</a></li>
+      </ul>
+    </section>
 
     <hr class="hairline" />
 

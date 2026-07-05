@@ -4,19 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>翁仲昱｜中租迪和 企業貸款顧問</title>
-<meta name="description" content="中租迪和微企金融業務顧問翁仲昱的數位名片，一鍵加 LINE、撥打電話、存聯絡人。" />
+<meta name="description" content="中租迪和微企金融業務顧問翁仲昱的數位名片，一鍵加 LINE、撥打電話。" />
 <meta name="theme-color" content="#1c2430" />
 
 <meta property="og:type" content="profile" />
 <meta property="og:title" content="翁仲昱｜中租迪和 企業貸款顧問" />
-<meta property="og:description" content="AI ＋ 資安背景的企業貸款顧問，一鍵加 LINE、撥打電話、存聯絡人。" />
+<meta property="og:description" content="AI ＋ 資安背景的企業貸款顧問，一鍵加 LINE、撥打電話。" />
 <meta property="og:image" content="https://aiwellnesstw.github.io/Justin/assets/og-image.png" />
 <meta property="og:url" content="https://aiwellnesstw.github.io/Justin/" />
 <meta property="og:locale" content="zh_TW" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="翁仲昱｜中租迪和 企業貸款顧問" />
-<meta name="twitter:description" content="AI ＋ 資安背景的企業貸款顧問，一鍵加 LINE、撥打電話、存聯絡人。" />
+<meta name="twitter:description" content="AI ＋ 資安背景的企業貸款顧問，一鍵加 LINE、撥打電話。" />
 <meta name="twitter:image" content="https://aiwellnesstw.github.io/Justin/assets/og-image.png" />
 
 <style>
@@ -257,41 +257,66 @@
     margin-bottom: 14px;
   }
 
-  .chip-list {
+  .service-grid {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .service-item {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .chip {
-    font-size: 13px;
-    padding: 6px 14px;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 10px;
     border: 1px solid var(--brass-line);
-    border-radius: 999px;
-    color: var(--ink-soft);
+    border-radius: 6px;
   }
 
-  .chip--link {
+  .service-item--link {
     padding: 0;
-    border: none;
+    border-color: var(--seal-soft);
   }
 
-  .chip--link a {
-    display: block;
-    padding: 6px 14px;
-    border: 1px solid var(--seal-soft);
-    border-radius: 999px;
-    color: var(--seal);
-    font-weight: 600;
+  .service-item--link a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 10px;
     text-decoration: none;
+    border-radius: 6px;
+    transition: background-color .15s ease;
   }
 
-  .chip--link a:hover,
-  .chip--link a:focus-visible {
+  .service-item--link a:hover,
+  .service-item--link a:focus-visible {
     background: var(--seal-soft);
+  }
+
+  .service-item--link .service-label {
+    color: var(--seal);
+  }
+
+  .service-icon {
+    width: 30px;
+    height: 30px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--seal-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .service-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
   }
 
   .dossier .eyebrow {
@@ -385,14 +410,6 @@
         </span>
         <span class="chev" aria-hidden="true">›</span>
       </a>
-      <button class="action-row" type="button" id="vcard-link">
-        <span class="action-icon" aria-hidden="true">＋</span>
-        <span class="action-text">
-          <span class="action-label">加入聯絡人</span>
-          <span class="action-value">儲存 vCard</span>
-        </span>
-        <span class="chev" aria-hidden="true">›</span>
-      </button>
       <a class="action-row" href="https://aiwellnesstw.github.io/ai-business-partner/" target="_blank" rel="noopener">
         <span class="action-icon" aria-hidden="true">🩺</span>
         <span class="action-text">
@@ -407,11 +424,25 @@
 
     <section class="services">
       <p class="eyebrow">服務項目</p>
-      <ul class="chip-list">
-        <li class="chip">企業貸款</li>
-        <li class="chip">中租保險</li>
-        <li class="chip">長短期租賃車</li>
-        <li class="chip chip--link"><a href="https://aiwellnesstw.github.io/" target="_blank" rel="noopener">仲安家健康好物</a></li>
+      <ul class="service-grid">
+        <li class="service-item">
+          <span class="service-icon" aria-hidden="true">💰</span>
+          <span class="service-label">企業貸款</span>
+        </li>
+        <li class="service-item">
+          <span class="service-icon" aria-hidden="true">🛡️</span>
+          <span class="service-label">中租保險</span>
+        </li>
+        <li class="service-item">
+          <span class="service-icon" aria-hidden="true">🚗</span>
+          <span class="service-label">長短期租賃車</span>
+        </li>
+        <li class="service-item service-item--link">
+          <a href="https://aiwellnesstw.github.io/" target="_blank" rel="noopener">
+            <span class="service-icon" aria-hidden="true">🌿</span>
+            <span class="service-label">仲安家健康好物</span>
+          </a>
+        </li>
       </ul>
     </section>
 
@@ -435,34 +466,5 @@
   </article>
 </main>
 
-<script>
-  (function () {
-    var vcard = [
-      "BEGIN:VCARD",
-      "VERSION:3.0",
-      "N:翁;仲昱;;;",
-      "FN:翁仲昱",
-      "ORG:中租迪和股份有限公司;微企金融部",
-      "TITLE:企業貸款顧問",
-      "TEL;TYPE=CELL:+886910123523",
-      "EMAIL:justinxq110982@gmail.com",
-      "URL:https://line.me/ti/p/RIbly0k8iA",
-      "END:VCARD"
-    ].join("\r\n");
-
-    var link = document.getElementById("vcard-link");
-    link.addEventListener("click", function () {
-      var blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = "翁仲昱.vcf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
-    });
-  })();
-</script>
 </body>
 </html>

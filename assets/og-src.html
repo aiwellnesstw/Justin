@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<title>OG Image Source</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; }
+
+  .og {
+    width: 1200px;
+    height: 630px;
+    background: #ece4d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    color: #1c2430;
+    position: relative;
+  }
+
+  .og::before {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    border: 1.5px solid #8f6f3855;
+    border-radius: 4px;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 640px;
+  }
+
+  .photo {
+    width: 172px;
+    height: 172px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #8f6f38;
+    box-shadow: 0 0 0 10px #f6f1e6, 0 0 0 12px #8f6f3855;
+    margin-bottom: 26px;
+  }
+
+  h1 {
+    font-size: 92px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1.15;
+  }
+
+  .org {
+    margin-top: 10px;
+    font-size: 34px;
+    letter-spacing: .06em;
+    color: #55606f;
+    font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 24px 0 20px;
+  }
+
+  .divider .line {
+    width: 150px;
+    height: 1.5px;
+    background: #8f6f3855;
+  }
+
+  .divider .diamond {
+    width: 11px;
+    height: 11px;
+    background: #b23a2e;
+    transform: rotate(45deg);
+  }
+
+  .tagline {
+    font-size: 30px;
+    letter-spacing: .1em;
+    color: #8f6f38;
+  }
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="col">
+    <img class="photo" src="avatar.jpg" alt="" />
+    <h1>翁仲昱</h1>
+    <p class="org">中租迪和　企業貸款顧問</p>
+    <div class="divider">
+      <span class="line"></span><span class="diamond"></span><span class="line"></span>
+    </div>
+    <p class="tagline">用科技眼光，看懂你的資金需求</p>
+  </div>
+</div>
+</body>
+</html>

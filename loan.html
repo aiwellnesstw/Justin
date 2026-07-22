@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>企業經營健檢｜翁仲昱</title>
+<meta name="description" content="3 分鐘企業經營健檢，了解資金調度空間，由翁仲昱親自為您分析。" />
+<meta name="theme-color" content="#1c2430" />
+<meta name="robots" content="noindex" />
+
+<style>
+  :root {
+    --paper: #ece4d3;
+    --card: #f6f1e6;
+    --ink: #1c2430;
+    --ink-soft: #55606f;
+    --seal: #b23a2e;
+    --seal-soft: #b23a2e1a;
+    --brass: #8f6f38;
+    --brass-line: #8f6f3855;
+    --tick: #3f6b52;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141a23;
+      --card: #1c2430;
+      --ink: #e9e2d2;
+      --ink-soft: #9aa4b2;
+      --seal: #d8664f;
+      --seal-soft: #d8664f26;
+      --brass: #c7a568;
+      --brass-line: #c7a56855;
+      --tick: #7fb99a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141a23;
+    --card: #1c2430;
+    --ink: #e9e2d2;
+    --ink-soft: #9aa4b2;
+    --seal: #d8664f;
+    --seal-soft: #d8664f26;
+    --brass: #c7a568;
+    --brass-line: #c7a56855;
+    --tick: #7fb99a;
+  }
+  :root[data-theme="light"] {
+    --paper: #ece4d3;
+    --card: #f6f1e6;
+    --ink: #1c2430;
+    --ink-soft: #55606f;
+    --seal: #b23a2e;
+    --seal-soft: #b23a2e1a;
+    --brass: #8f6f38;
+    --brass-line: #8f6f3855;
+    --tick: #3f6b52;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", "Hiragino Sans GB", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 20px 64px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 32px rgba(28,36,48,.14);
+    padding: 40px 30px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid var(--brass-line);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-bottom: 18px;
+  }
+  .back-link:hover { color: var(--seal); }
+
+  .hero { text-align: center; }
+
+  .action-icon-lg {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: var(--seal-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .eyebrow {
+    margin: 0 0 6px;
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0 0 8px;
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-align: center;
+  }
+
+  .sub {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .hairline {
+    border: none;
+    border-top: 1px solid var(--brass-line);
+    margin: 26px 0;
+  }
+
+  .step-meta {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 4px;
+    background: var(--brass-line);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 26px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--seal);
+    border-radius: 999px;
+    transition: width .2s ease;
+  }
+
+  .q-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    border: 1px solid var(--brass-line);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    transition: background-color .15s ease, border-color .15s ease;
+  }
+
+  .option:hover { border-color: var(--seal); }
+
+  .option.selected {
+    border-color: var(--seal);
+    background: var(--seal-soft);
+    color: var(--seal);
+    font-weight: 700;
+  }
+
+  .opt-dot {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid var(--brass-line);
+    position: relative;
+  }
+  .option.selected .opt-dot { border-color: var(--seal); }
+  .option.selected .opt-dot::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--seal);
+  }
+
+  .field { margin-bottom: 16px; }
+
+  .field-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .field-label .req { color: var(--seal); }
+
+  .field input[type="text"],
+  .field input[type="tel"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 1px solid var(--brass-line);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .field input:focus { outline: none; border-color: var(--seal); }
+
+  .nav-row { display: flex; gap: 10px; }
+
+  .btn-next, .btn-back {
+    padding: 13px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+  }
+  .btn-next {
+    flex: 1;
+    color: #fff;
+    background: var(--seal);
+    opacity: .4;
+    pointer-events: none;
+    transition: opacity .15s ease;
+  }
+  .btn-next.on { opacity: 1; pointer-events: all; }
+  .btn-back {
+    flex: none;
+    background: none;
+    border: 1px solid var(--brass-line);
+    color: var(--ink);
+    padding: 13px 16px;
+  }
+
+  .consent {
+    margin: 14px 0 0;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  .result { text-align: center; }
+  .result-emoji { font-size: 40px; margin-bottom: 12px; }
+  .result h2 {
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    font-size: 20px;
+    margin: 0 0 6px;
+  }
+  .result .r-sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 18px; }
+  .rec-card {
+    border: 1px solid var(--brass-line);
+    border-radius: 8px;
+    padding: 18px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .rec-card .r-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--seal);
+    background: var(--seal-soft);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .rec-card h3 {
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    font-size: 18px;
+    margin: 0 0 8px;
+  }
+  .rec-card p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .result-back {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid var(--brass-line);
+    border-radius: 6px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<main class="stage">
+  <article class="card" aria-label="企業經營健檢">
+    <a class="back-link" href="index.html">‹ 回名片首頁</a>
+
+    <header class="hero">
+      <div class="action-icon-lg" aria-hidden="true">💰</div>
+      <p class="eyebrow">企業經營健檢</p>
+      <h1>企業貸款</h1>
+      <p class="sub">3 分鐘了解資金調度空間，專員將親自為您分析</p>
+    </header>
+
+    <hr class="hairline" />
+
+    <div id="quizContent"></div>
+  </article>
+</main>
+
+<script>
+const SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzGAIQzvdusQRl5znfxE5KKuwmMUBiLK74vn25VcZK4nMDjDw_lnFDpkZgJWvZflVtaew/exec';
+
+const QS = [
+  {
+    key: 'paymentTerm',
+    q: '供應商如果現金付款打 97 折、月結 30 天原價，你們公司通常怎麼選？',
+    opts: [
+      { label: '一定選現金拿折扣', val: 'cash_discount' },
+      { label: '看資金狀況決定', val: 'depends' },
+      { label: '一律月結，沒特別算過', val: 'term_default' },
+    ]
+  },
+  {
+    key: 'receivableDays',
+    q: '客戶端付款給你們，大概要等多久？',
+    opts: [
+      { label: '即時或 30 天內', val: 'fast' },
+      { label: '30-60 天', val: 'medium' },
+      { label: '60 天以上', val: 'slow' },
+    ]
+  },
+  {
+    key: 'expansionPlan',
+    q: '未來半年有沒有採購設備、擴廠、拓點的打算？',
+    opts: [
+      { label: '有明確計畫', val: 'planned' },
+      { label: '評估中', val: 'evaluating' },
+      { label: '沒有', val: 'none' },
+    ]
+  },
+  {
+    key: 'funding',
+    q: '目前資金需求？',
+    opts: [
+      { label: '有明確需求，金額抓得出來', val: 'clear' },
+      { label: '未來半年內可能會需要', val: 'maybe' },
+      { label: '目前沒有', val: 'none' },
+    ]
+  },
+];
+
+let state = { step: 0, ans: {}, c: { name: '', phone: '', taxId: '' } };
+
+function render() {
+  const total = QS.length + 1;
+  const s = state.step;
+  const pct = Math.round(((s + 1) / (total + 1)) * 100);
+  if (s < QS.length) renderQ(s, total, pct);
+  else renderContact(total, pct);
+}
+
+function renderQ(i, total, pct) {
+  const q = QS[i];
+  const sel = state.ans[q.key] || null;
+  document.getElementById('quizContent').innerHTML = `
+    <p class="step-meta">第 ${i + 1} 步，共 ${total} 步</p>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="q-title">${q.q}</div>
+    <div class="options">
+      ${q.opts.map(o => `
+        <div class="option${sel === o.val ? ' selected' : ''}" onclick="pick('${q.key}','${o.val}')">
+          <div class="opt-dot"></div>${o.label}
+        </div>`).join('')}
+    </div>
+    <div class="nav-row">
+      ${i > 0 ? `<button class="btn-back" onclick="back()">‹ 上一步</button>` : ''}
+      <button class="btn-next${sel ? ' on' : ''}" onclick="next()">
+        ${i < QS.length - 1 ? '下一步 ›' : '填寫聯絡資訊 ›'}
+      </button>
+    </div>`;
+}
+
+function renderContact(total, pct) {
+  const c = state.c;
+  document.getElementById('quizContent').innerHTML = `
+    <p class="step-meta">第 ${total} 步，共 ${total} 步</p>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="q-title">最後一步！留下您的資料，<br>專員將盡快與您聯繫</div>
+    <div class="field">
+      <label class="field-label" for="cName">聯絡人姓名<span class="req">*</span></label>
+      <input type="text" id="cName" value="${c.name}" oninput="uc('name',this.value)" placeholder="請輸入姓名" />
+    </div>
+    <div class="field">
+      <label class="field-label" for="cPhone">聯絡電話<span class="req">*</span></label>
+      <input type="tel" id="cPhone" value="${c.phone}" oninput="uc('phone',this.value)" placeholder="請輸入手機或市話" />
+    </div>
+    <div class="field">
+      <label class="field-label" for="cTaxId">公司統一編號<span class="req">*</span></label>
+      <input type="text" id="cTaxId" inputmode="numeric" maxlength="8" value="${c.taxId}" oninput="uc('taxId',this.value)" placeholder="請輸入 8 碼統編" />
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="back()">‹ 上一步</button>
+      <button class="btn-next${contactOk() ? ' on' : ''}" id="submitBtn" onclick="submitForm()">送出 ✓</button>
+    </div>
+    <p class="consent">您所填寫的資料僅供聯繫貸款諮詢使用，不會另作他用。</p>`;
+}
+
+function uc(f, v) {
+  state.c[f] = v;
+  const btn = document.getElementById('submitBtn');
+  if (btn) { contactOk() ? btn.classList.add('on') : btn.classList.remove('on'); }
+}
+function contactOk() {
+  const c = state.c;
+  return c.name.trim() && c.phone.trim() && c.taxId.trim();
+}
+
+function pick(key, val) {
+  state.ans[key] = val;
+  render();
+}
+function next() {
+  if (!state.ans[QS[state.step].key]) return;
+  state.step++; render();
+}
+function back() {
+  if (state.step > 0) { state.step--; render(); }
+}
+
+function recommend() {
+  const { paymentTerm, receivableDays, expansionPlan } = state.ans;
+  if (expansionPlan === 'planned' || expansionPlan === 'evaluating') {
+    return {
+      tag: '設備／擴充融資',
+      title: '設備融資或擴充貸款',
+      desc: '您有採購設備、擴廠或拓點的計畫，這類資本支出通常金額較大，用專案融資分攤現金流壓力，會比一次動用自有資金更划算。'
+    };
+  }
+  if (receivableDays === 'slow') {
+    return {
+      tag: '應收帳款融資',
+      title: '應收帳款融資',
+      desc: '您的收款帳期在 60 天以上，代表資金被客戶端卡住一段時間。用應收帳款融資可以提前把這筆錢調度出來，不用乾等客戶付款。'
+    };
+  }
+  if (paymentTerm === 'depends' || paymentTerm === 'term_default') {
+    return {
+      tag: '週轉金',
+      title: '營運週轉金',
+      desc: '進貨付款如果能穩定用現金拿到折扣，長期算下來是一筆不小的成本節省。用週轉金補足現金流，讓您有底氣選現金付款、談更好的採購條件。'
+    };
+  }
+  return {
+    tag: '企業貸款',
+    title: '一般企業貸款方案',
+    desc: '從您的回答來看，目前資金調度算穩健。如果之後有明確的資金需求，歡迎隨時詢問，我會依實際狀況幫您規劃合適的方案。'
+  };
+}
+
+async function submitForm() {
+  if (!contactOk()) return;
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '送出中…'; btn.classList.remove('on');
+
+  const c = state.c;
+  const payload = {
+    source: 'loan',
+    contactName: c.name,
+    contactPhone: c.phone,
+    taxId: c.taxId,
+    paymentTerm: state.ans.paymentTerm || '',
+    receivableDays: state.ans.receivableDays || '',
+    expansionPlan: state.ans.expansionPlan || '',
+    funding: state.ans.funding || '',
+  };
+
+  try {
+    await fetch(SHEET_WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+  } catch (_) {}
+
+  showResult();
+}
+
+function showResult() {
+  const rec = recommend();
+  document.getElementById('quizContent').innerHTML = `
+    <div class="result">
+      <div class="result-emoji">✅</div>
+      <h2>已收到您的資料</h2>
+      <p class="r-sub">根據您的回答，初步建議方向：</p>
+      <div class="rec-card">
+        <div class="r-tag">${rec.tag}</div>
+        <h3>${rec.title}</h3>
+        <p>${rec.desc}</p>
+      </div>
+      <a class="result-back" href="index.html">回名片首頁</a>
+    </div>`;
+}
+
+render();
+</script>
+</body>
+</html>

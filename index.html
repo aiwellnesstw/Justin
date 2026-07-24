@@ -346,6 +346,14 @@
     border-color: var(--seal-soft);
   }
 
+  .service-item--wide {
+    grid-column: 1 / -1;
+  }
+
+  .service-item--wide a {
+    justify-content: center;
+  }
+
   .service-item--link a {
     display: flex;
     align-items: center;
@@ -435,6 +443,27 @@
     color: var(--ink-soft);
   }
 
+  .footer-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  .footer-line-link {
+    color: var(--seal);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .footer-line-link:hover,
+  .footer-line-link:focus-visible {
+    text-decoration: underline;
+  }
+
   .tagline {
     margin-top: 6px !important;
     font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
@@ -476,19 +505,11 @@
         </span>
         <span class="chev" aria-hidden="true">›</span>
       </a>
-      <a class="action-row" href="https://chaileasetw.pse.is/9ajb59" target="_blank" rel="noopener">
-        <span class="action-icon" aria-hidden="true">🏢</span>
+      <a class="action-row" href="https://line.me/ti/g2/5Sh44keeLFOy3qPSct6sNODQirQs6kRAXvioyQ?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener">
+        <span class="action-icon" aria-hidden="true">🤝</span>
         <span class="action-text">
-          <span class="action-label">中租官方 LINE</span>
-          <span class="action-value">官方帳號</span>
-        </span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-      <a class="action-row" href="https://aiwellnesstw.github.io/ai-business-partner/" target="_blank" rel="noopener">
-        <span class="action-icon" aria-hidden="true">🩺</span>
-        <span class="action-text">
-          <span class="action-label">免費 AI 賦能健檢</span>
-          <span class="action-value">中租客戶專屬</span>
+          <span class="action-label">雲嘉南頭家聯誼會</span>
+          <span class="action-value">加入企業主交流社群</span>
         </span>
         <span class="chev" aria-hidden="true">›</span>
       </a>
@@ -534,6 +555,12 @@
             <span class="service-label">仲安家健康好物</span>
           </a>
         </li>
+        <li class="service-item service-item--link service-item--wide">
+          <a href="https://aiwellnesstw.github.io/ai-business-partner/" target="_blank" rel="noopener">
+            <span class="service-icon" aria-hidden="true">🩺</span>
+            <span class="service-label">免費 AI 賦能健檢</span>
+          </a>
+        </li>
       </ul>
     </section>
 
@@ -551,7 +578,10 @@
     </section>
 
     <footer class="footer">
-      <p>中租迪和股份有限公司｜微企金融部</p>
+      <div class="footer-line">
+        <span>中租迪和股份有限公司｜微企金融部</span>
+        <a class="footer-line-link" href="https://chaileasetw.pse.is/9ajb59" target="_blank" rel="noopener">中租官方 LINE</a>
+      </div>
       <p class="tagline">用科技眼光，看懂你的資金需求</p>
     </footer>
   </article>

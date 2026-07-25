@@ -401,11 +401,24 @@ const QS = [
 ];
 
 let state = { step: 0, ans: {}, c: { name: '', phone: '', taxId: '' } };
+let trackedMax = -1;
+
+function trackStep(i, total, label) {
+  if (i <= trackedMax) return;
+  trackedMax = i;
+  fetch(SHEET_WEBHOOK, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ source: 'rental', event: 'step', step: i + 1, total: total, question: label })
+  }).catch(() => {});
+}
 
 function render() {
   const total = QS.length + 1;
   const s = state.step;
   const pct = Math.round(((s + 1) / (total + 1)) * 100);
+  trackStep(s, total, s < QS.length ? QS[s].key : 'contact');
   if (s < QS.length) renderQ(s, total, pct);
   else renderContact(total, pct);
 }

@@ -28,6 +28,7 @@
     --seal: #b23a2e;
     --seal-soft: #b23a2e1a;
     --brass: #8f6f38;
+    --brass-text: #6b5228;
     --brass-line: #8f6f3855;
     --tick: #3f6b52;
   }
@@ -41,6 +42,7 @@
       --seal: #d8664f;
       --seal-soft: #d8664f26;
       --brass: #c7a568;
+      --brass-text: #c7a568;
       --brass-line: #c7a56855;
       --tick: #7fb99a;
     }
@@ -53,6 +55,7 @@
     --seal: #d8664f;
     --seal-soft: #d8664f26;
     --brass: #c7a568;
+    --brass-text: #c7a568;
     --brass-line: #c7a56855;
     --tick: #7fb99a;
   }
@@ -64,6 +67,7 @@
     --seal: #b23a2e;
     --seal-soft: #b23a2e1a;
     --brass: #8f6f38;
+    --brass-text: #6b5228;
     --brass-line: #8f6f3855;
     --tick: #3f6b52;
   }
@@ -130,11 +134,11 @@
 
   .eyebrow {
     margin: 0 0 6px;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: .16em;
     text-transform: uppercase;
-    color: var(--brass);
-    font-weight: 600;
+    color: var(--brass-text);
+    font-weight: 700;
   }
 
   h1 {
@@ -192,6 +196,19 @@
     outline-offset: 2px;
   }
 
+  .action-row--primary {
+    background: var(--seal-soft);
+    border: 1px solid var(--seal-soft);
+  }
+
+  .action-row--primary .action-icon {
+    background: var(--seal);
+  }
+
+  .action-row--primary .action-label {
+    color: var(--seal);
+  }
+
   .action-icon {
     width: 34px;
     height: 34px;
@@ -218,8 +235,9 @@
   }
 
   .action-value {
-    font-size: 13px;
-    color: var(--ink-soft);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
     font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
     font-variant-numeric: tabular-nums;
     overflow: hidden;
@@ -359,6 +377,7 @@
     align-items: center;
     gap: 10px;
     width: 100%;
+    min-height: 60px;
     padding: 12px 10px;
     text-decoration: none;
     border-radius: 6px;
@@ -374,6 +393,22 @@
     color: var(--seal);
   }
 
+  .service-item--primary {
+    border-color: var(--seal);
+  }
+
+  .service-item--primary a {
+    background: var(--seal-soft);
+  }
+
+  .service-item--primary .service-icon {
+    background: var(--seal);
+  }
+
+  .service-item--primary .service-label {
+    font-weight: 700;
+  }
+
   .service-icon {
     width: 30px;
     height: 30px;
@@ -387,7 +422,7 @@
   }
 
   .service-label {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--ink);
     line-height: 1.35;
@@ -416,13 +451,13 @@
 
   .tick {
     flex: none;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     margin-top: 1px;
     border-radius: 50%;
     background: color-mix(in srgb, var(--tick) 16%, transparent);
     color: var(--tick);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -468,7 +503,7 @@
     margin-top: 6px !important;
     font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
     font-size: 14px;
-    color: var(--brass);
+    color: var(--brass-text);
   }
 
 </style>
@@ -497,7 +532,7 @@
         </span>
         <span class="chev" aria-hidden="true">›</span>
       </a>
-      <a class="action-row" href="https://line.me/ti/p/RIbly0k8iA" target="_blank" rel="noopener">
+      <a class="action-row action-row--primary" href="https://line.me/ti/p/RIbly0k8iA" target="_blank" rel="noopener">
         <span class="action-icon" aria-hidden="true">💬</span>
         <span class="action-text">
           <span class="action-label">加 LINE 好友</span>
@@ -533,7 +568,7 @@
     <section class="services">
       <p class="eyebrow">服務項目</p>
       <ul class="service-grid">
-        <li class="service-item service-item--link">
+        <li class="service-item service-item--link service-item--primary">
           <a href="loan.html">
             <span class="service-icon" aria-hidden="true">💰</span>
             <span class="service-label">企業貸款</span>

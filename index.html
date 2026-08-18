@@ -338,7 +338,13 @@
   }
 
   .services .eyebrow {
-    margin-bottom: 14px;
+    margin-bottom: 4px;
+  }
+
+  .services-lead {
+    margin: 0 0 14px;
+    font-size: 13px;
+    color: var(--brass-text);
   }
 
   .service-grid {
@@ -426,6 +432,19 @@
     font-weight: 600;
     color: var(--ink);
     line-height: 1.35;
+  }
+
+  .service-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .service-hint {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--brass-text);
+    line-height: 1.3;
   }
 
   .dossier .eyebrow {
@@ -558,35 +577,51 @@
 
     <section class="services">
       <p class="eyebrow">服務項目</p>
+      <p class="services-lead">點一項，3 分鐘幫你分析</p>
       <ul class="service-grid">
         <li class="service-item service-item--link service-item--primary">
           <a href="loan.html">
             <span class="service-icon" aria-hidden="true">💰</span>
-            <span class="service-label">企業貸款</span>
+            <span class="service-text">
+              <span class="service-label">企業貸款</span>
+              <span class="service-hint">3 分鐘測資金調度空間</span>
+            </span>
           </a>
         </li>
         <li class="service-item service-item--link">
           <a href="insurance.html">
             <span class="service-icon" aria-hidden="true">🛡️</span>
-            <span class="service-label">中租保險</span>
+            <span class="service-text">
+              <span class="service-label">中租保險</span>
+              <span class="service-hint">3 分鐘保障缺口健檢</span>
+            </span>
           </a>
         </li>
         <li class="service-item service-item--link">
           <a href="rental.html">
             <span class="service-icon" aria-hidden="true">🚗</span>
-            <span class="service-label">長短期租賃車</span>
+            <span class="service-text">
+              <span class="service-label">長短期租賃車</span>
+              <span class="service-hint">選車試算，3 分鐘搞定</span>
+            </span>
           </a>
         </li>
         <li class="service-item service-item--link">
           <a href="https://aiwellnesstw.github.io/" target="_blank" rel="noopener">
             <span class="service-icon" aria-hidden="true">🌿</span>
-            <span class="service-label">仲安家健康好物</span>
+            <span class="service-text">
+              <span class="service-label">仲安家健康好物</span>
+              <span class="service-hint">日常保健好物推薦</span>
+            </span>
           </a>
         </li>
         <li class="service-item service-item--link service-item--wide">
           <a href="https://aiwellnesstw.github.io/ai-business-partner/" target="_blank" rel="noopener">
             <span class="service-icon" aria-hidden="true">🩺</span>
-            <span class="service-label">免費 AI 賦能健檢</span>
+            <span class="service-text">
+              <span class="service-label">免費 AI 賦能健檢</span>
+              <span class="service-hint">3 分鐘看你的 AI 導入機會</span>
+            </span>
           </a>
         </li>
       </ul>

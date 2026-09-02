@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>翁仲昱｜中租迪和 企業貸款顧問</title>
 <meta name="description" content="中租迪和企業貸款顧問翁仲昱的數位名片，一鍵加 LINE、撥打電話。" />
-<meta name="theme-color" content="#1c2430" />
+<meta name="theme-color" content="#16283f" />
 
 <meta property="og:type" content="profile" />
 <meta property="og:title" content="翁仲昱｜中租迪和 企業貸款顧問" />
@@ -19,482 +19,545 @@
 <meta name="twitter:description" content="AI ＋ 資安背景的企業貸款顧問，一鍵加 LINE、撥打電話。" />
 <meta name="twitter:image" content="https://aiwellnesstw.github.io/Justin/assets/og-image2.png" />
 
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700&display=swap" />
+
 <style>
   :root {
-    --paper: #ece4d3;
-    --card: #f6f1e6;
-    --ink: #1c2430;
-    --ink-soft: #55606f;
-    --seal: #b23a2e;
-    --seal-soft: #b23a2e1a;
-    --brass: #8f6f38;
-    --brass-text: #6b5228;
-    --brass-line: #8f6f3855;
-    --tick: #3f6b52;
+    --ground: #efe8d8;
+    --surface: #ffffff;
+    --surface-2: #f7f2e7;
+    --ink: #1b2a41;
+    --ink-soft: #5c6678;
+    --gold: #a9812f;
+    --gold-line: #a9812f44;
+    --check: #3c7a60;
+
+    /* fixed dark bands — same in every theme by design */
+    --band-solid-a: #1a2f52;
+    --band-solid-b: #122139;
+    --band-text: #eef2f8;
+    --band-text-soft: #a9b6cb;
+    --band-gold: #d7b067;
+    --band-gold-line: #d7b06740;
   }
 
   @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #141a23;
-      --card: #1c2430;
-      --ink: #e9e2d2;
-      --ink-soft: #9aa4b2;
-      --seal: #d8664f;
-      --seal-soft: #d8664f26;
-      --brass: #c7a568;
-      --brass-text: #c7a568;
-      --brass-line: #c7a56855;
-      --tick: #7fb99a;
+    :root:not([data-theme="light"]) {
+      --ground: #0e1a2b;
+      --surface: #17263d;
+      --surface-2: #1c2c46;
+      --ink: #ece3cf;
+      --ink-soft: #9dabc0;
+      --gold: #d7b067;
+      --gold-line: #d7b06740;
+      --check: #6db594;
     }
   }
   :root[data-theme="dark"] {
-    --paper: #141a23;
-    --card: #1c2430;
-    --ink: #e9e2d2;
-    --ink-soft: #9aa4b2;
-    --seal: #d8664f;
-    --seal-soft: #d8664f26;
-    --brass: #c7a568;
-    --brass-text: #c7a568;
-    --brass-line: #c7a56855;
-    --tick: #7fb99a;
+    --ground: #0e1a2b;
+    --surface: #17263d;
+    --surface-2: #1c2c46;
+    --ink: #ece3cf;
+    --ink-soft: #9dabc0;
+    --gold: #d7b067;
+    --gold-line: #d7b06740;
+    --check: #6db594;
   }
   :root[data-theme="light"] {
-    --paper: #ece4d3;
-    --card: #f6f1e6;
-    --ink: #1c2430;
-    --ink-soft: #55606f;
-    --seal: #b23a2e;
-    --seal-soft: #b23a2e1a;
-    --brass: #8f6f38;
-    --brass-text: #6b5228;
-    --brass-line: #8f6f3855;
-    --tick: #3f6b52;
+    --ground: #efe8d8;
+    --surface: #ffffff;
+    --surface-2: #f7f2e7;
+    --ink: #1b2a41;
+    --ink-soft: #5c6678;
+    --gold: #a9812f;
+    --gold-line: #a9812f44;
+    --check: #3c7a60;
   }
 
   * { box-sizing: border-box; }
 
   html, body {
     margin: 0;
-    background: var(--paper);
+    background: var(--ground);
     color: var(--ink);
-    font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", "Hiragino Sans GB", sans-serif;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
+  img { max-width: 100%; }
+
   .stage {
-    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 48px 20px 64px;
+    padding: 26px 14px 52px;
   }
 
   .card {
     width: 100%;
-    max-width: 420px;
-    background: var(--card);
-    border-radius: 6px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 32px rgba(28,36,48,.14);
-    padding: 40px 30px 28px;
-    position: relative;
+    max-width: 430px;
+    background: var(--surface);
+    border-radius: 16px;
     overflow: hidden;
+    box-shadow: 0 2px 6px rgba(10,18,32,.12), 0 26px 60px rgba(10,18,32,.22);
   }
 
-  .card::before {
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(120% 90% at 12% 0%, #24406b 0%, var(--band-solid-a) 42%, var(--band-solid-b) 100%);
+    color: var(--band-text);
+    padding: 22px 22px 0;
+    overflow: hidden;
+    min-height: 328px;
+  }
+
+  .hero::before {
     content: "";
     position: absolute;
-    inset: 10px;
-    border: 1px solid var(--brass-line);
-    border-radius: 3px;
+    right: -60px;
+    top: -40px;
+    width: 320px;
+    height: 460px;
+    background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+    clip-path: polygon(38% 0, 100% 0, 100% 100%, 0 100%);
+    transform: rotate(4deg);
     pointer-events: none;
   }
 
-  .hero {
-    text-align: center;
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 150px;
+    top: -40px;
+    width: 2px;
+    height: 300px;
+    background: linear-gradient(180deg, transparent, var(--band-gold), transparent);
+    transform: rotate(15deg);
+    opacity: .35;
+    pointer-events: none;
+  }
+
+  .brandline {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    z-index: 3;
   }
 
-  .portrait {
-    width: 104px;
-    height: 104px;
-    margin: 0 auto 18px;
-    position: relative;
+  .brandmark {
+    width: 30px;
+    height: 30px;
+    flex: none;
   }
 
-  .portrait img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    border: 2px solid var(--brass);
-    box-shadow: 0 0 0 5px var(--card), 0 0 0 6px var(--brass-line), 0 4px 14px rgba(28,36,48,.18);
-  }
-
-  .eyebrow {
-    margin: 0 0 6px;
+  .brandline span {
     font-size: 13px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--brass-text);
-    font-weight: 700;
-  }
-
-  h1 {
-    margin: 0 0 8px;
-    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
-    font-size: 32px;
     font-weight: 700;
     letter-spacing: .04em;
+    color: var(--band-text);
+  }
+
+  .headline {
+    position: relative;
+    z-index: 3;
+    margin: 26px 0 0;
+    padding-right: 128px;
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 1.12;
+    letter-spacing: .02em;
     text-wrap: balance;
   }
 
-  .org {
+  .headline .k { color: var(--band-gold); }
+
+  .headline-rule {
+    position: relative;
+    z-index: 3;
+    width: 54px;
+    height: 4px;
+    margin: 16px 0 12px;
+    background: var(--band-gold);
+    border-radius: 2px;
+  }
+
+  .subline {
+    position: relative;
+    z-index: 3;
     margin: 0;
-    font-size: 14px;
-    color: var(--ink-soft);
+    padding-right: 120px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--band-text-soft);
+    letter-spacing: .03em;
+  }
+
+  .idblock {
+    position: relative;
+    z-index: 3;
+    margin-top: 22px;
+    padding: 14px 0 20px;
+    border-top: 1px solid rgba(255,255,255,.14);
+  }
+
+  .idblock .name {
+    font-family: "Noto Serif TC", serif;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: .16em;
+  }
+
+  .idblock .en {
+    display: block;
+    margin-top: 5px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--band-gold);
+  }
+
+  .idblock .corp {
+    margin: 8px 0 0;
+    font-size: 11.5px;
+    color: var(--band-text-soft);
     letter-spacing: .02em;
   }
 
-  .hairline {
-    border: none;
-    border-top: 1px solid var(--brass-line);
-    margin: 26px 0;
+  /* ---------- CHARACTER ---------- */
+  .toon {
+    position: absolute;
+    right: -6px;
+    bottom: 0;
+    width: 176px;
+    height: auto;
+    z-index: 2;
+    filter: drop-shadow(0 10px 14px rgba(6,12,22,.34));
   }
 
-  .actions {
+  .toon .wave {
+    transform-box: fill-box;
+    transform-origin: 22% 88%;
+    animation: wave 1.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes wave {
+    from { transform: rotate(-1deg); }
+    to   { transform: rotate(5deg); }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  .section { padding: 26px 22px; }
+
+  .eyebrow {
+    margin: 0 0 3px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: var(--gold);
+  }
+
+  .eyebrow-note {
+    margin: 0 0 16px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- SERVICES ---------- */
+  .svc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 9px;
   }
 
-  .action-row {
+  .svc-row {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 13px 10px;
+    gap: 13px;
+    padding: 12px 12px;
+    border: 1px solid var(--gold-line);
+    border-radius: 12px;
     text-decoration: none;
-    color: inherit;
-    border-radius: 4px;
-    transition: background-color .15s ease;
-    cursor: pointer;
-    border: none;
-    background: none;
-    width: 100%;
-    text-align: left;
-    font: inherit;
+    color: var(--ink);
+    transition: background-color .14s ease;
   }
 
-  .action-row:hover,
-  .action-row:focus-visible {
-    background: var(--seal-soft);
+  .svc-row:hover,
+  .svc-row:focus-visible {
+    background: var(--surface-2);
+    outline: none;
   }
 
-  .action-row:focus-visible {
-    outline: 2px solid var(--seal);
-    outline-offset: 2px;
+  .svc-row:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
+
+  .svc-row.is-primary {
+    border-color: var(--gold);
+    background: linear-gradient(150deg, rgba(169,129,47,.12), rgba(169,129,47,.04));
   }
 
-  .action-row--primary {
-    background: var(--seal-soft);
-    border: 1px solid var(--seal-soft);
-  }
-
-  .action-row--primary .action-icon {
-    background: var(--seal);
-  }
-
-  .action-row--primary .action-label {
-    color: var(--seal);
-  }
-
-  .action-icon {
-    width: 34px;
-    height: 34px;
+  .svc-ic {
+    width: 40px;
+    height: 40px;
     flex: none;
     border-radius: 50%;
-    background: var(--seal-soft);
+    background: linear-gradient(160deg, #c99a45, #a9812f);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    box-shadow: 0 5px 12px rgba(169,129,47,.30);
   }
 
-  .action-text {
-    flex: 1;
+  .svc-ic svg { width: 21px; height: 21px; }
+
+  .svc-body {
     display: flex;
     flex-direction: column;
     gap: 2px;
     min-width: 0;
   }
 
-  .action-label {
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .action-value {
-    font-size: 15px;
-    font-weight: 500;
+  .svc-hook {
+    font-size: 13.5px;
+    font-weight: 700;
     color: var(--ink);
-    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
-    font-variant-numeric: tabular-nums;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.35;
   }
 
-  .chev {
-    color: var(--brass);
-    font-size: 18px;
+  .svc-row.is-primary .svc-hook { color: var(--gold); }
+
+  .svc-sub {
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+
+  .svc-row .chev {
+    margin-left: auto;
     flex: none;
+    color: var(--gold);
+    font-size: 16px;
   }
 
-  .video .eyebrow {
-    margin-bottom: 14px;
+  /* ---------- DOSSIER BAND ---------- */
+  .dossier {
+    background: linear-gradient(180deg, var(--band-solid-a), var(--band-solid-b));
+    color: var(--band-text);
+    padding: 26px 22px 28px;
+  }
+
+  .dossier .eyebrow { color: var(--band-gold); }
+
+  .dossier .wink {
+    margin: 0 0 16px;
+    font-size: 12.5px;
+    color: var(--band-text-soft);
+  }
+
+  .creds {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .creds li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--band-text);
+  }
+
+  .creds .tk {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: var(--band-gold);
+    color: #14243d;
+    font-size: 12px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact { padding: 24px 22px 8px; }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    padding: 15px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    margin-bottom: 11px;
+    transition: transform .12s ease;
+  }
+
+  .btn:active { transform: scale(.985); }
+
+  .btn-line {
+    background: linear-gradient(150deg, #b58a35, #94701f);
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(148,112,31,.32);
+  }
+
+  .btn-tel {
+    background: var(--surface-2);
+    color: var(--ink);
+    border: 1px solid var(--gold-line);
+  }
+
+  .btn .bic {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.18);
+  }
+
+  .btn-tel .bic { background: rgba(169,129,47,.14); }
+  .btn .bic svg { width: 17px; height: 17px; }
+
+  .btn .bt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .btn .bt b {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+
+  .btn .bt span {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn-line .bt span { opacity: .9; font-size: 13px; font-weight: 500; }
+
+  .btn .chev { margin-left: auto; font-size: 17px; opacity: .7; }
+
+  /* ---------- VIDEO ---------- */
+  .video {
+    margin: 12px 0 2px;
     text-align: center;
   }
 
+  .video .vlabel {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: var(--gold);
+  }
+
   .video-frame {
-    width: 62%;
-    max-width: 230px;
+    position: relative;
+    width: 66%;
+    max-width: 220px;
     margin: 0 auto;
     aspect-ratio: 9 / 16;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    border: 1px solid var(--brass-line);
-    box-shadow: 0 6px 18px rgba(28,36,48,.18);
-    position: relative;
-    background: #000;
+    background: linear-gradient(170deg, #24406b, #122139);
+    border: 1px solid var(--gold-line);
+    box-shadow: 0 10px 24px rgba(10,18,32,.28);
   }
 
-  .video-poster {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .video-poster img {
+  .video-thumb {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .video-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--seal);
-    box-shadow: 0 2px 10px rgba(0,0,0,.35), 0 0 0 6px rgba(255,255,255,.28);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform .15s ease;
-  }
-
-  .video-poster:hover .video-play,
-  .video-poster:focus-visible .video-play {
-    transform: translate(-50%, -50%) scale(1.08);
-  }
-
-  .video-poster:focus-visible {
-    outline: 2px solid var(--seal);
-    outline-offset: 2px;
-  }
-
-  .video-play::before {
-    content: "";
-    display: block;
-    margin-left: 4px;
-    border-style: solid;
-    border-width: 11px 0 11px 18px;
-    border-color: transparent transparent transparent #fff;
-  }
-
-  .video-frame iframe {
+  .video-poster {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
-  }
-
-  .video-caption {
-    margin: 12px 0 0;
-    text-align: center;
-    font-size: 13px;
-    color: var(--ink-soft);
-  }
-
-  .services .eyebrow {
-    margin-bottom: 4px;
-  }
-
-  .services-lead {
-    margin: 0 0 14px;
-    font-size: 13px;
-    color: var(--brass-text);
-  }
-
-  .service-grid {
-    list-style: none;
-    margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .service-item {
+    background: linear-gradient(180deg, rgba(18,33,57,.12), rgba(18,33,57,.55));
+    cursor: pointer;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 12px 10px;
-    border: 1px solid var(--brass-line);
-    border-radius: 6px;
-  }
-
-  .service-item--link {
-    padding: 0;
-    border-color: var(--seal-soft);
-  }
-
-  .service-item--wide {
-    grid-column: 1 / -1;
-  }
-
-  .service-item--wide a {
     justify-content: center;
+    gap: 12px;
+    color: #ffffff;
   }
 
-  .service-item--link a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    min-height: 60px;
-    padding: 12px 10px;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color .15s ease;
-  }
-
-  .service-item--link a:hover,
-  .service-item--link a:focus-visible {
-    background: var(--seal-soft);
-  }
-
-  .service-item--link .service-label {
-    color: var(--seal);
-  }
-
-  .service-item--primary {
-    border-color: var(--seal);
-  }
-
-  .service-item--primary a {
-    background: var(--seal-soft);
-  }
-
-  .service-item--primary .service-icon {
-    background: var(--seal);
-  }
-
-  .service-item--primary .service-label {
-    font-weight: 700;
-  }
-
-  .service-icon {
-    width: 30px;
-    height: 30px;
-    flex: none;
+  .video-poster .pl {
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background: var(--seal-soft);
+    background: linear-gradient(160deg, #d7b067, #a9812f);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.4);
+    transition: transform .15s ease;
   }
 
-  .service-label {
-    font-size: 15px;
+  .video-poster:hover .pl,
+  .video-poster:focus-visible .pl { transform: scale(1.08); }
+  .video-poster:focus-visible { outline: 2px solid var(--band-gold); outline-offset: -4px; }
+
+  .video-poster .pl::before {
+    content: "";
+    border-style: solid;
+    border-width: 9px 0 9px 15px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 4px;
+  }
+
+  .video-poster .cap {
+    font-size: 12.5px;
     font-weight: 600;
-    color: var(--ink);
-    line-height: 1.35;
+    letter-spacing: .02em;
+    text-shadow: 0 1px 4px rgba(0,0,0,.55);
   }
 
-  .service-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-  .service-hint {
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--brass-text);
-    line-height: 1.3;
-  }
+  .video-note { margin: 10px 0 0; font-size: 11px; color: var(--ink-soft); }
 
-  .dossier .eyebrow {
-    margin-bottom: 14px;
-  }
-
-  .credentials {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
-  }
-
-  .credentials li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .tick {
-    flex: none;
-    width: 20px;
-    height: 20px;
-    margin-top: 1px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--tick) 16%, transparent);
-    color: var(--tick);
-    font-size: 12px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .footer {
-    margin-top: 30px;
+  /* ---------- TAGLINE + FOOTER ---------- */
+  .tagline {
+    margin: 24px 24px 8px;
     text-align: center;
-  }
-
-  .footer p {
-    margin: 0;
-  }
-
-  .footer p:first-child {
-    font-size: 12px;
-    color: var(--ink-soft);
+    font-family: "LXGW WenKai TC", "Noto Serif TC", serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.7;
+    letter-spacing: .04em;
+    color: var(--gold);
   }
 
   .footer-line {
@@ -503,150 +566,277 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
-    font-size: 12px;
+    margin: 0 22px 4px;
+    font-size: 11.5px;
     color: var(--ink-soft);
   }
 
-  .footer-line-link {
-    color: var(--seal);
+  .footer-line a {
+    color: var(--gold);
     text-decoration: none;
     font-weight: 600;
   }
 
-  .footer-line-link:hover,
-  .footer-line-link:focus-visible {
-    text-decoration: underline;
+  .footer-line a:hover,
+  .footer-line a:focus-visible { text-decoration: underline; }
+
+  .footbar {
+    margin-top: 16px;
+    background: linear-gradient(180deg, var(--band-solid-b), #0d1a2e);
+    color: var(--band-text-soft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 13px 18px 15px;
+    font-size: 11px;
+    letter-spacing: .04em;
   }
 
-  .tagline {
-    margin-top: 6px !important;
-    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
-    font-size: 14px;
-    color: var(--brass-text);
+  .footbar b { color: var(--band-text); font-weight: 700; }
+  .footbar .dot { color: var(--band-gold); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toon .wave { animation: none; }
   }
 
+  @media (max-width: 360px) {
+    .headline { font-size: 40px; padding-right: 112px; }
+    .toon { width: 150px; }
+  }
 </style>
 </head>
 <body>
 <main class="stage">
   <article class="card" aria-label="翁仲昱的數位名片">
+
     <header class="hero">
-      <div class="portrait">
-        <img src="assets/avatar.jpg" alt="翁仲昱本人照片" width="104" height="104" />
+      <div class="brandline">
+        <svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="2" y="2" width="36" height="36" rx="8" fill="none" stroke="#d7b067" stroke-width="2"/>
+          <path d="M12 27 L20 11 L28 27 M15.5 21 H24.5" fill="none" stroke="#d7b067" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>中租迪和股份有限公司</span>
       </div>
-      <p class="eyebrow">企業貸款顧問</p>
-      <h1>翁仲昱</h1>
-      <p class="org">中租迪和股份有限公司（中租-KY 5871）</p>
+
+      <h1 class="headline">企業<span class="k">貸款</span><br />顧問</h1>
+      <div class="headline-rule"></div>
+      <p class="subline">周轉資金 ・ 設備更新 ・ 工程請款</p>
+
+      <div class="idblock">
+        <div class="name">翁仲昱</div>
+        <span class="en">Justin Weng</span>
+        <p class="corp">中租迪和股份有限公司（中租-KY 5871）</p>
+      </div>
+
+      <svg class="toon" viewBox="0 0 200 300" aria-label="翁仲昱的 Q 版人物插畫" role="img">
+        <ellipse cx="100" cy="289" rx="48" ry="8" fill="rgba(0,0,0,0.22)"/>
+
+        <!-- legs + shoes -->
+        <rect x="82" y="222" width="17" height="58" rx="8" fill="#2b3a54"/>
+        <rect x="101" y="222" width="17" height="58" rx="8" fill="#2b3a54"/>
+        <ellipse cx="88" cy="282" rx="13" ry="6.5" fill="#20252e"/>
+        <ellipse cx="112" cy="282" rx="13" ry="6.5" fill="#20252e"/>
+
+        <!-- neck -->
+        <path d="M91 108 h18 v22 q-9 6 -18 0 z" fill="#e7ba93"/>
+
+        <!-- torso: jacket silhouette -->
+        <path d="M57 150
+                 C57 137 70 130 84 129
+                 L116 129
+                 C130 130 143 137 143 150
+                 L147 222
+                 C120 233 80 233 53 222 Z" fill="#d8c3a1"/>
+        <!-- white shirt V -->
+        <path d="M83 130 Q100 137 117 130 L112 180 Q100 189 88 180 Z" fill="#f6f2e9"/>
+        <!-- lapels -->
+        <path d="M57 138 L94 180 L86 189 L53 150 Z" fill="#c9ad7f"/>
+        <path d="M143 138 L106 180 L114 189 L147 150 Z" fill="#c9ad7f"/>
+        <path d="M86 130 Q100 124 114 130 L110 137 Q100 133 90 137 Z" fill="#c9ad7f"/>
+
+        <!-- lanyard + ID card -->
+        <path d="M93 132 L91 190" stroke="#20355a" stroke-width="5" stroke-linecap="round"/>
+        <path d="M107 132 L112 190" stroke="#20355a" stroke-width="5" stroke-linecap="round"/>
+        <rect x="90" y="186" width="22" height="28" rx="3" fill="#fbf8f1" stroke="#a9812f" stroke-width="1.4"/>
+        <circle cx="97" cy="196" r="3.6" fill="#20355a"/>
+        <rect x="93" y="203" width="16" height="2.6" rx="1.3" fill="#a9812f"/>
+        <rect x="93" y="208" width="11" height="2.2" rx="1.1" fill="#c9b58f"/>
+
+        <!-- left arm -->
+        <path d="M60 145
+                 C50 147 45 158 44 172
+                 L45 205
+                 C45 214 52 219 60 219
+                 C68 219 74 213 73 205
+                 L71 164
+                 C70 151 68 145 60 145 Z" fill="#d8c3a1"/>
+        <circle cx="59" cy="222" r="9" fill="#f1c9a6"/>
+
+        <!-- right arm raised in a wave -->
+        <g class="wave">
+          <circle cx="133" cy="143" r="16" fill="#d8c3a1"/>
+          <path d="M119 139
+                   C123 129 130 124 138 125
+                   C152 126 166 129 173 136
+                   C176 121 170 102 164 88
+                   L144 92
+                   C150 109 152 127 150 143
+                   C146 151 133 158 119 156 Z" fill="#d8c3a1"/>
+          <path d="M145 91 L165 87 L167 97 L148 102 Z" fill="#c9ad7f"/>
+          <g fill="#f1c9a6">
+            <circle cx="156" cy="83" r="9"/>
+            <rect x="145" y="67" width="5" height="15" rx="2.5"/>
+            <rect x="152" y="64" width="5" height="17" rx="2.5"/>
+            <rect x="159" y="65" width="5" height="16" rx="2.5"/>
+            <rect x="165.5" y="70" width="5" height="13" rx="2.5"/>
+            <ellipse cx="146" cy="87" rx="3.8" ry="5.2" transform="rotate(-32 146 87)"/>
+          </g>
+          <path d="M172 68 l1.8 4.6 l4.6 1.8 l-4.6 1.8 l-1.8 4.6 l-1.8 -4.6 l-4.6 -1.8 l4.6 -1.8 z" fill="#d7b067"/>
+        </g>
+
+        <!-- head -->
+        <ellipse cx="100" cy="60" rx="50" ry="46" fill="#241d1a"/>
+        <ellipse cx="56" cy="82" rx="7.5" ry="10" fill="#f1c9a6"/>
+        <ellipse cx="144" cy="82" rx="7.5" ry="10" fill="#f1c9a6"/>
+        <ellipse cx="100" cy="76" rx="45" ry="43" fill="#f4cda9"/>
+
+        <!-- hair -->
+        <path d="M55 80
+                 C53 42 76 24 100 24
+                 C124 24 146 40 146 76
+                 C146 60 136 52 121 54
+                 C116 44 105 41 97 49
+                 C91 38 74 42 68 55
+                 C60 59 56 67 55 80 Z" fill="#241d1a"/>
+        <path d="M146 76 C146 55 135 47 119 52 C130 57 136 67 136 80 C141 79 145 78 146 76 Z" fill="#2f2621"/>
+        <path d="M66 56 C76 47 91 44 102 50" stroke="#3a2f28" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+        <!-- face -->
+        <path d="M72 70 Q81 64 90 69" stroke="#2b2320" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M110 69 Q119 64 128 70" stroke="#2b2320" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <ellipse cx="82" cy="84" rx="6.3" ry="7.4" fill="#2b2320"/>
+        <ellipse cx="118" cy="84" rx="6.3" ry="7.4" fill="#2b2320"/>
+        <circle cx="84.2" cy="81" r="2" fill="#fff"/>
+        <circle cx="120.2" cy="81" r="2" fill="#fff"/>
+        <path d="M75 88 Q82 92 89 88" stroke="#e9bd97" stroke-width="2.3" stroke-linecap="round" fill="none"/>
+        <path d="M111 88 Q118 92 125 88" stroke="#e9bd97" stroke-width="2.3" stroke-linecap="round" fill="none"/>
+        <ellipse cx="65" cy="95" rx="7.5" ry="4.6" fill="#f0a78e" opacity="0.55"/>
+        <ellipse cx="135" cy="95" rx="7.5" ry="4.6" fill="#f0a78e" opacity="0.55"/>
+        <path d="M97 94 Q100 98 103 94" stroke="#dba57f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M89 103 Q100 112 111 104" stroke="#9a5340" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
     </header>
 
-    <hr class="hairline" />
-
-    <nav class="actions" aria-label="聯絡方式">
-      <a class="action-row" href="tel:+886984123626">
-        <span class="action-icon" aria-hidden="true">📞</span>
-        <span class="action-text">
-          <span class="action-label">撥打電話</span>
-          <span class="action-value">0984-123-626</span>
-        </span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-      <a class="action-row action-row--primary" href="https://line.me/ti/p/RIbly0k8iA" target="_blank" rel="noopener">
-        <span class="action-icon" aria-hidden="true">💬</span>
-        <span class="action-text">
-          <span class="action-label">加 LINE 好友</span>
-          <span class="action-value">點此加入好友</span>
-        </span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-    </nav>
-
-    <hr class="hairline" />
-
-    <section class="video">
-      <p class="eyebrow">30 秒認識中租</p>
-      <div class="video-frame" id="videoFrame">
-        <button class="video-poster" id="videoPoster" type="button" aria-label="播放影片：中租如何協助中小企業">
-          <img src="assets/video-thumb.jpg" alt="中租迪和企業貸款影片縮圖" loading="lazy" />
-          <span class="video-play" aria-hidden="true"></span>
-        </button>
-      </div>
-      <p class="video-caption">中租如何協助中小企業</p>
-    </section>
-
-    <hr class="hairline" />
-
-    <section class="services">
-      <p class="eyebrow">服務項目</p>
-      <p class="services-lead">點一項，3 分鐘幫你分析</p>
-      <ul class="service-grid">
-        <li class="service-item service-item--link service-item--primary">
-          <a href="loan.html">
-            <span class="service-icon" aria-hidden="true">💰</span>
-            <span class="service-text">
-              <span class="service-label">企業貸款</span>
-              <span class="service-hint">3 分鐘測資金調度空間</span>
+    <section class="section">
+      <p class="eyebrow">先看你的數字，再決定</p>
+      <p class="eyebrow-note">點一項，3 分鐘看到結果 — 不用先給財報，也不用先決定要不要。</p>
+      <ul class="svc-list">
+        <li>
+          <a class="svc-row is-primary" href="loan.html">
+            <span class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="2"/><path d="M12 8v8M9.5 10c0-1.2 1.1-2 2.5-2s2.5.8 2.5 1.8-1.1 1.7-2.5 1.9-2.5.9-2.5 2 1.1 1.8 2.5 1.8 2.5-.8 2.5-2" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="svc-body">
+              <span class="svc-hook">先算你現在能調到多少資金</span>
+              <span class="svc-sub">企業貸款 ｜ 3 題估出可動用額度，不用先給財報</span>
             </span>
+            <span class="chev" aria-hidden="true">›</span>
           </a>
         </li>
-        <li class="service-item service-item--link">
-          <a href="insurance.html">
-            <span class="service-icon" aria-hidden="true">🛡️</span>
-            <span class="service-text">
-              <span class="service-label">中租保險</span>
-              <span class="service-hint">3 分鐘保障缺口健檢</span>
+        <li>
+          <a class="svc-row" href="insurance.html">
+            <span class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 2.5v5.5c0 4.5-3 7.5-7 9.5-4-2-7-5-7-9.5V5.5z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="svc-body">
+              <span class="svc-hook">假如一場意外，公司負擔得了嗎？</span>
+              <span class="svc-sub">中租保險 ｜ 30 秒測出你現在缺哪一塊保障</span>
             </span>
+            <span class="chev" aria-hidden="true">›</span>
           </a>
         </li>
-        <li class="service-item service-item--link">
-          <a href="rental.html">
-            <span class="service-icon" aria-hidden="true">🚗</span>
-            <span class="service-text">
-              <span class="service-label">長短期租賃車</span>
-              <span class="service-hint">選車試算，3 分鐘搞定</span>
+        <li>
+          <a class="svc-row" href="rental.html">
+            <span class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13l1.6-4.5A3 3 0 018.4 6.5h7.2a3 3 0 012.8 2l1.6 4.5M4 13h16M4 13v4h2M20 13v4h-2M7 17h10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="17" r="1.4" fill="#fff"/><circle cx="16.5" cy="17" r="1.4" fill="#fff"/></svg></span>
+            <span class="svc-body">
+              <span class="svc-hook">公司要添車，先聊聊用途</span>
+              <span class="svc-sub">中租租賃車 ｜ 請各位老闆上車囉～</span>
             </span>
+            <span class="chev" aria-hidden="true">›</span>
           </a>
         </li>
-        <li class="service-item service-item--link">
-          <a href="https://aiwellnesstw.github.io/" target="_blank" rel="noopener">
-            <span class="service-icon" aria-hidden="true">🌿</span>
-            <span class="service-text">
-              <span class="service-label">仲安家健康好物</span>
-              <span class="service-hint">日常保健好物推薦</span>
+        <li>
+          <a class="svc-row" href="https://aiwellnesstw.github.io/ai-business-partner/" target="_blank" rel="noopener">
+            <span class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="8" width="14" height="11" rx="3" stroke="#fff" stroke-width="1.8"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><path d="M3 12v3M21 12v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="svc-body">
+              <span class="svc-hook">你公司哪些事可以丟給 AI？</span>
+              <span class="svc-sub">免費 AI 賦能健檢 ｜ 3 分鐘掃出自動化機會（免費）</span>
             </span>
+            <span class="chev" aria-hidden="true">›</span>
           </a>
         </li>
-        <li class="service-item service-item--link service-item--wide">
-          <a href="https://aiwellnesstw.github.io/ai-business-partner/" target="_blank" rel="noopener">
-            <span class="service-icon" aria-hidden="true">🩺</span>
-            <span class="service-text">
-              <span class="service-label">免費 AI 賦能健檢</span>
-              <span class="service-hint">3 分鐘看你的 AI 導入機會</span>
+        <li>
+          <a class="svc-row" href="https://aiwellnesstw.github.io/" target="_blank" rel="noopener">
+            <span class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20c5-3 8-7 8-11a4 4 0 00-7-2.6A4 4 0 006 9c0 4 3 8 6 11z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 12c0-2 1.5-3.5 4-4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="svc-body">
+              <span class="svc-hook">老闆的身體也是週轉金</span>
+              <span class="svc-sub">仲安家健康好物 ｜ 我自己在吃的保健清單</span>
             </span>
+            <span class="chev" aria-hidden="true">›</span>
           </a>
         </li>
       </ul>
     </section>
-
-    <hr class="hairline" />
 
     <section class="dossier">
       <p class="eyebrow">不只是貸款顧問</p>
-      <ul class="credentials">
-        <li><span class="tick">✓</span>AI ＋ 無人機整合應用（國防／關鍵基礎設施）</li>
-        <li><span class="tick">✓</span>資安產品 B2B 開發經驗（GCB、VANS 等）</li>
-        <li><span class="tick">✓</span>海委會研討會論文作者</li>
-        <li><span class="tick">✓</span>台中市電腦公會合作講師</li>
-        <li><span class="tick">✓</span>台語精通・在地溝通零距離</li>
+      <p class="wink">同一個人，前幾年的名片印過這些頭銜。</p>
+      <ul class="creds">
+        <li><span class="tk">✓</span>AI ＋ 無人機整合應用（國防／關鍵基礎設施）</li>
+        <li><span class="tk">✓</span>資安產品 B2B 開發經驗（GCB、VANS 等）</li>
+        <li><span class="tk">✓</span>海委會研討會論文作者（於警大發表）</li>
+        <li><span class="tk">✓</span>台中市電腦公會合作講師</li>
+        <li><span class="tk">✓</span>台語精通，在地溝通零距離</li>
       </ul>
     </section>
 
-    <footer class="footer">
-      <div class="footer-line">
-        <span>中租迪和股份有限公司</span>
-        <a class="footer-line-link" href="https://chaileasetw.pse.is/9ajb59" target="_blank" rel="noopener">中租官方 LINE</a>
+    <section class="contact">
+      <a class="btn btn-line" href="https://line.me/ti/p/RIbly0k8iA" target="_blank" rel="noopener">
+        <span class="bic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 10.5c0-4.4-4.3-8-9.5-8S2 6.1 2 10.5c0 3.9 3.4 7.2 8 7.9.9.1.8.6.6 1.4l-.3 1.3c-.1.6.4 1 1 .7 1.2-.6 5.9-3.6 7.6-6 1.1-1.4 1.8-3 1.8-5z" fill="#fff"/></svg></span>
+        <span class="bt"><b>加 LINE 好友</b><span>先加著，有需要再開口</span></span>
+        <span class="chev">›</span>
+      </a>
+      <a class="btn btn-tel" href="tel:+886984123626">
+        <span class="bic"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 3.5l3 .5 1 4-2 1.5c1 2.3 2.7 4 5 5l1.5-2 4 1 .5 3c0 1-.8 2-2 2C12 21.5 3 12.5 3 5.5c0-1.2 1-2 2-2z" fill="#a9812f"/></svg></span>
+        <span class="bt"><b>撥打電話</b><span>0984-123-626</span></span>
+        <span class="chev">›</span>
+      </a>
+
+      <div class="video">
+        <p class="vlabel">30 秒認識中租</p>
+        <div class="video-frame" id="videoFrame">
+          <img class="video-thumb" src="assets/video-thumb.jpg" alt="中租迪和企業貸款影片縮圖" loading="lazy" />
+          <button class="video-poster" id="videoPoster" type="button" aria-label="播放影片：中租如何協助中小企業">
+            <span class="pl" aria-hidden="true"></span>
+            <span class="cap">中租如何協助中小企業</span>
+          </button>
+        </div>
+        <p class="video-note">在這裡直接看，不會跳走</p>
       </div>
-      <p class="tagline">用科技眼光，看懂你的資金需求</p>
-    </footer>
+    </section>
+
+    <p class="tagline">開口談錢很尷尬，<br />讓我先開口</p>
+
+    <div class="footer-line">
+      <span>中租迪和股份有限公司</span>
+      <a href="https://chaileasetw.pse.is/9ajb59" target="_blank" rel="noopener">中租官方 LINE</a>
+    </div>
+
+    <div class="footbar">
+      <b>專業服務</b><span class="dot">◆</span>
+      <b>誠信可靠</b><span class="dot">◆</span>
+      <b>在地深耕</b><span class="dot">◆</span>
+      <b>全台服務</b>
+    </div>
+
   </article>
 </main>
 

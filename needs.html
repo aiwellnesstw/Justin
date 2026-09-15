@@ -532,29 +532,44 @@ function render() {
 }
 
 async function loadItems() {
-  document.getElementById('countLabel').textContent = '載入中…';
-  try {
-    const res = await fetch(SHEET_WEBHOOK + '?source=needs_board');
-    const data = await res.json();
-    const now = Date.now();
-    items = (data.items || [])
-      .map(it => ({
-        ...it,
-        type: it.type && it.type.indexOf('需求') === 0 ? 'demand' : 'supply',
-      }))
-      .filter(it => {
-        const t = new Date(it.time).getTime();
-        if (isNaN(t)) return false;
-        return now - t <= (it.pinned ? PIN_DISPLAY_MS : DISPLAY_MS);
-      })
-      .sort((a, b) => {
-        if (!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
-        return new Date(b.time) - new Date(a.time);
-      });
-  } catch (_) {
-    document.getElementById('countLabel').textContent = '讀取失敗，請按重新整理再試一次';
-    items = [];
+  const countEl = document.getElementById('countLabel');
+  countEl.textContent = '載入中…';
+
+  // Google Apps Script 偶爾會短暫讀取失敗（幾秒後重試通常就正常），
+  // 先自動重試一次再放棄，減少使用者看到假性「沒資料」的機會。
+  let data;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(SHEET_WEBHOOK + '?source=needs_board');
+      data = await res.json();
+      break;
+    } catch (_) {
+      if (attempt === 0) {
+        await new Promise(r => setTimeout(r, 1200));
+        continue;
+      }
+      // 兩次都失敗才放棄：直接 return 不呼叫 render()，避免這則錯誤訊息
+      // 立刻被 render() 蓋成「共 0 筆」；已載入過的 items 也保留著，不清空。
+      countEl.textContent = '讀取失敗，請按「重新整理」再試一次';
+      return;
+    }
   }
+
+  const now = Date.now();
+  items = (data.items || [])
+    .map(it => ({
+      ...it,
+      type: it.type && it.type.indexOf('需求') === 0 ? 'demand' : 'supply',
+    }))
+    .filter(it => {
+      const t = new Date(it.time).getTime();
+      if (isNaN(t)) return false;
+      return now - t <= (it.pinned ? PIN_DISPLAY_MS : DISPLAY_MS);
+    })
+    .sort((a, b) => {
+      if (!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
+      return new Date(b.time) - new Date(a.time);
+    });
   render();
 }
 

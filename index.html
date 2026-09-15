@@ -33,6 +33,9 @@
     --gold: #a9812f;
     --gold-line: #a9812f44;
     --check: #3c7a60;
+    --check-soft: #3c7a601f;
+    --demand: #b23a2e;
+    --demand-soft: #b23a2e1f;
 
     /* fixed dark bands — same in every theme by design */
     --band-solid-a: #1a2f52;
@@ -53,6 +56,9 @@
       --gold: #d7b067;
       --gold-line: #d7b06740;
       --check: #6db594;
+      --check-soft: #6db5942a;
+      --demand: #d8664f;
+      --demand-soft: #d8664f2a;
     }
   }
   :root[data-theme="dark"] {
@@ -64,6 +70,9 @@
     --gold: #d7b067;
     --gold-line: #d7b06740;
     --check: #6db594;
+    --check-soft: #6db5942a;
+    --demand: #d8664f;
+    --demand-soft: #d8664f2a;
   }
   :root[data-theme="light"] {
     --ground: #efe8d8;
@@ -74,6 +83,9 @@
     --gold: #a9812f;
     --gold-line: #a9812f44;
     --check: #3c7a60;
+    --check-soft: #3c7a601f;
+    --demand: #b23a2e;
+    --demand-soft: #b23a2e1f;
   }
 
   * { box-sizing: border-box; }
@@ -422,6 +434,13 @@
     border: 1px solid var(--gold-line);
   }
 
+  .btn-group {
+    background: linear-gradient(150deg, rgba(60,122,96,.14), rgba(60,122,96,.05));
+    color: var(--ink);
+    border: 1px solid rgba(60,122,96,.38);
+  }
+  .btn-group .bic { background: rgba(60,122,96,.18); }
+
   .btn .bic {
     width: 34px;
     height: 34px;
@@ -459,6 +478,54 @@
   .btn-line .bt span { opacity: .9; font-size: 13px; font-weight: 500; }
 
   .btn .chev { margin-left: auto; font-size: 17px; opacity: .7; }
+
+  /* ---------- COMMUNITY TEASER ---------- */
+  .teaser {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    margin: -3px 0 11px;
+    border-radius: 12px;
+    border: 1px dashed var(--gold-line);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background-color .14s ease;
+  }
+
+  .teaser:hover,
+  .teaser:focus-visible { background: var(--surface-2); outline: none; }
+  .teaser:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
+
+  .teaser-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: none;
+  }
+
+  .tt-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+    letter-spacing: .02em;
+  }
+  .tt-tag.supply { color: var(--check); background: var(--check-soft); }
+  .tt-tag.demand { color: var(--demand); background: var(--demand-soft); }
+
+  .teaser-text {
+    flex: 1;
+    min-width: 0;
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .teaser-text b { color: var(--ink); font-weight: 700; }
+
+  .teaser .chev { margin-left: auto; flex: none; color: var(--gold); font-size: 15px; }
 
   /* ---------- VIDEO ---------- */
   .video {
@@ -810,6 +877,21 @@
         <span class="chev">›</span>
       </a>
 
+      <!-- TODO(Justin)：換成真正的 LINE OpenChat 邀請連結，目前是佔位連結 -->
+      <a class="btn btn-group" href="#line-group-link-todo" target="_blank" rel="noopener">
+        <span class="bic"><svg viewBox="0 0 24 24" fill="none"><circle cx="8.5" cy="8.5" r="3.2" stroke="#3c7a60" stroke-width="1.8"/><circle cx="16" cy="10" r="2.4" stroke="#3c7a60" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.7-5 5-5s4.4 1.8 5 5" stroke="#3c7a60" stroke-width="1.8" stroke-linecap="round"/><path d="M14.5 14.3c2 .1 3.6 1.7 4 4.2" stroke="#3c7a60" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <span class="bt"><b>加入頭家交流群</b><span>雲嘉南頭家 AI 導入交流群</span></span>
+        <span class="chev">›</span>
+      </a>
+      <a class="teaser" href="needs.html">
+        <span class="teaser-tags">
+          <span class="tt-tag supply">🟢 供給</span>
+          <span class="tt-tag demand">🔴 需求</span>
+        </span>
+        <span class="teaser-text"><b>群內頭家互助中：</b>外籍勞工人力、工程點工、報廢回收、找場地……看板即時更新</span>
+        <span class="chev">›</span>
+      </a>
+
       <div class="video">
         <p class="vlabel">30 秒認識中租</p>
         <div class="video-frame" id="videoFrame">
@@ -823,7 +905,7 @@
       </div>
     </section>
 
-    <p class="tagline">開口談錢很尷尬，<br />讓我先開口</p>
+    <p class="tagline">不只 0 到 1，<br />助你 100 萬到 1 億</p>
 
     <div class="footer-line">
       <span>中租迪和股份有限公司</span>

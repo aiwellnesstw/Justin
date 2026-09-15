@@ -282,6 +282,13 @@
     text-align: center;
   }
 
+  .form-error {
+    margin: 0 0 12px;
+    font-size: 12.5px;
+    color: var(--seal);
+    text-align: center;
+  }
+
   /* --- list --- */
   .list { display: flex; flex-direction: column; gap: 12px; }
 
@@ -402,6 +409,12 @@
         <input type="text" id="fPostedBy" maxlength="30" placeholder="暱稱或公司名" />
       </div>
 
+      <div class="field">
+        <label class="field-label" for="fPassphrase">通關密語<span class="req">*</span><span class="opt">（群組公告過，防止外流亂貼）</span></label>
+        <input type="text" id="fPassphrase" maxlength="30" oninput="checkForm()" />
+      </div>
+
+      <p class="form-error" id="formError" hidden></p>
       <button class="btn-submit" id="submitBtn" type="submit">貼上需求牆</button>
       <p class="consent">貼文內容群組內公開可見，請勿留下不希望公開的個資。</p>
     </form>
@@ -444,7 +457,10 @@ function pickType(t) {
 }
 
 function checkForm() {
-  const ok = selectedType && document.getElementById('fCategory').value && document.getElementById('fTitle').value.trim();
+  const ok = selectedType
+    && document.getElementById('fCategory').value
+    && document.getElementById('fTitle').value.trim()
+    && document.getElementById('fPassphrase').value.trim();
   document.getElementById('submitBtn').classList.toggle('on', !!ok);
 }
 
@@ -517,7 +533,13 @@ async function loadItems() {
 
 async function submitPost(evt) {
   evt.preventDefault();
-  const ok = selectedType && document.getElementById('fCategory').value && document.getElementById('fTitle').value.trim();
+  const errEl = document.getElementById('formError');
+  errEl.hidden = true;
+
+  const ok = selectedType
+    && document.getElementById('fCategory').value
+    && document.getElementById('fTitle').value.trim()
+    && document.getElementById('fPassphrase').value.trim();
   if (!ok) return false;
 
   const btn = document.getElementById('submitBtn');
@@ -532,16 +554,33 @@ async function submitPost(evt) {
     detail: document.getElementById('fDetail').value.trim(),
     contact: document.getElementById('fContact').value.trim(),
     postedBy: document.getElementById('fPostedBy').value.trim(),
+    passphrase: document.getElementById('fPassphrase').value.trim(),
   };
 
+  let result = null;
   try {
-    await fetch(SHEET_WEBHOOK, {
+    const res = await fetch(SHEET_WEBHOOK, {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     });
-  } catch (_) {}
+    result = await res.json();
+  } catch (_) {
+    // 讀不到結果（網路問題等）時保守當作可能有寫入，不擋使用者，但也不做樂觀更新，請他重新整理確認
+    errEl.textContent = '送出時網路怪怪的，按「重新整理」確認一下有沒有貼成功。';
+    errEl.hidden = false;
+    btn.textContent = '貼上需求牆';
+    btn.classList.add('on');
+    return false;
+  }
+
+  if (!result || !result.ok) {
+    errEl.textContent = '通關密語不對，請跟群組公告核對後再試一次。';
+    errEl.hidden = false;
+    btn.textContent = '貼上需求牆';
+    btn.classList.add('on');
+    return false;
+  }
 
   // 樂觀更新：先把自己這篇塞進清單最前面，不用等重新整理
   items.unshift({

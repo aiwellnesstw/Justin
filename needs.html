@@ -557,30 +557,34 @@ async function submitPost(evt) {
     passphrase: document.getElementById('fPassphrase').value.trim(),
   };
 
-  let result = null;
+  // 密語先用 GET 問一次（GET 回應讀得到，POST 回應在這個部署環境讀不到）
   try {
-    const res = await fetch(SHEET_WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    });
-    result = await res.json();
+    const checkRes = await fetch(SHEET_WEBHOOK + '?source=needs_board&checkPassphrase=' + encodeURIComponent(payload.passphrase));
+    const checkData = await checkRes.json();
+    if (!checkData || !checkData.ok) {
+      errEl.textContent = '通關密語不對，請跟群組公告核對後再試一次。';
+      errEl.hidden = false;
+      btn.textContent = '貼上需求牆';
+      btn.classList.add('on');
+      return false;
+    }
   } catch (_) {
-    // 讀不到結果（網路問題等）時保守當作可能有寫入，不擋使用者，但也不做樂觀更新，請他重新整理確認
-    errEl.textContent = '送出時網路怪怪的，按「重新整理」確認一下有沒有貼成功。';
+    errEl.textContent = '網路怪怪的，檢查不了密語，請稍後再試一次。';
     errEl.hidden = false;
     btn.textContent = '貼上需求牆';
     btn.classList.add('on');
     return false;
   }
 
-  if (!result || !result.ok) {
-    errEl.textContent = '通關密語不對，請跟群組公告核對後再試一次。';
-    errEl.hidden = false;
-    btn.textContent = '貼上需求牆';
-    btn.classList.add('on');
-    return false;
-  }
+  // 密語通過，真正寫入用 no-cors fire-and-forget（跟其他表單同一套寫法，doPost 會再驗一次密語）
+  try {
+    await fetch(SHEET_WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+  } catch (_) {}
 
   // 樂觀更新：先把自己這篇塞進清單最前面，不用等重新整理
   items.unshift({

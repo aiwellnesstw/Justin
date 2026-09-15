@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>頭家需求牆｜翁仲昱</title>
+<meta name="description" content="雲嘉南頭家 AI 導入交流群專用，頭家們互相貼供給跟需求，缺工缺料缺場地，看到需要的直接聯絡。" />
+<meta name="theme-color" content="#1c2430" />
+<meta name="robots" content="noindex" />
+
+<style>
+  :root {
+    --paper: #ece4d3;
+    --card: #f6f1e6;
+    --ink: #1c2430;
+    --ink-soft: #55606f;
+    --seal: #b23a2e;
+    --seal-soft: #b23a2e1a;
+    --brass: #8f6f38;
+    --brass-line: #8f6f3855;
+    --tick: #3f6b52;
+    --tick-soft: #3f6b521a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141a23;
+      --card: #1c2430;
+      --ink: #e9e2d2;
+      --ink-soft: #9aa4b2;
+      --seal: #d8664f;
+      --seal-soft: #d8664f26;
+      --brass: #c7a568;
+      --brass-line: #c7a56855;
+      --tick: #7fb99a;
+      --tick-soft: #7fb99a26;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141a23;
+    --card: #1c2430;
+    --ink: #e9e2d2;
+    --ink-soft: #9aa4b2;
+    --seal: #d8664f;
+    --seal-soft: #d8664f26;
+    --brass: #c7a568;
+    --brass-line: #c7a56855;
+    --tick: #7fb99a;
+    --tick-soft: #7fb99a26;
+  }
+  :root[data-theme="light"] {
+    --paper: #ece4d3;
+    --card: #f6f1e6;
+    --ink: #1c2430;
+    --ink-soft: #55606f;
+    --seal: #b23a2e;
+    --seal-soft: #b23a2e1a;
+    --brass: #8f6f38;
+    --brass-line: #8f6f3855;
+    --tick: #3f6b52;
+    --tick-soft: #3f6b521a;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", "Hiragino Sans GB", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 20px 64px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--card);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 32px rgba(28,36,48,.14);
+    padding: 40px 26px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid var(--brass-line);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-bottom: 18px;
+  }
+  .back-link:hover { color: var(--seal); }
+
+  .hero { text-align: center; }
+
+  .action-icon-lg {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: var(--seal-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .eyebrow {
+    margin: 0 0 6px;
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0 0 8px;
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-align: center;
+  }
+
+  .sub {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .hairline {
+    border: none;
+    border-top: 1px solid var(--brass-line);
+    margin: 26px 0;
+  }
+
+  /* --- toolbar: post button + count --- */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .count {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .btn-post {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--seal);
+    border: none;
+    border-radius: 999px;
+    padding: 9px 16px;
+    cursor: pointer;
+  }
+  .btn-post.is-open { background: var(--ink-soft); }
+
+  /* --- filter chips --- */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .chip {
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--brass-line);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .chip.on {
+    border-color: var(--seal);
+    color: var(--seal);
+    font-weight: 700;
+    background: var(--seal-soft);
+  }
+
+  /* --- post form --- */
+  .post-form {
+    border: 1px solid var(--brass-line);
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .post-form.open { display: block; }
+
+  .type-toggle { display: flex; gap: 10px; margin-bottom: 14px; }
+  .type-opt {
+    flex: 1;
+    text-align: center;
+    padding: 11px 8px;
+    border: 1px solid var(--brass-line);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 600;
+    user-select: none;
+  }
+  .type-opt[data-type="supply"].selected { border-color: var(--tick); background: var(--tick-soft); color: var(--tick); }
+  .type-opt[data-type="demand"].selected { border-color: var(--seal); background: var(--seal-soft); color: var(--seal); }
+
+  .field { margin-bottom: 14px; }
+  .field-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .field-label .req { color: var(--seal); }
+  .field-label .opt { color: var(--ink-soft); font-weight: 400; }
+
+  .field input[type="text"],
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 11px 13px;
+    font-size: 14.5px;
+    border: 1px solid var(--brass-line);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .field textarea { resize: vertical; min-height: 64px; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--seal); }
+
+  .btn-submit {
+    width: 100%;
+    padding: 13px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    color: #fff;
+    background: var(--seal);
+    opacity: .4;
+    pointer-events: none;
+    transition: opacity .15s ease;
+  }
+  .btn-submit.on { opacity: 1; pointer-events: all; }
+
+  .consent {
+    margin: 10px 0 0;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  /* --- list --- */
+  .list { display: flex; flex-direction: column; gap: 12px; }
+
+  .item {
+    border: 1px solid var(--brass-line);
+    border-radius: 8px;
+    padding: 15px 16px;
+  }
+  .item-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    flex: none;
+  }
+  .pill.supply { color: var(--tick); background: var(--tick-soft); }
+  .pill.demand { color: var(--seal); background: var(--seal-soft); }
+  .item-cat { font-size: 11.5px; color: var(--brass); font-weight: 600; }
+  .item-time {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+  .item-title { font-size: 15px; font-weight: 700; margin: 0 0 4px; }
+  .item-detail { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 8px; white-space: pre-wrap; }
+  .item-foot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .item-foot .contact { color: var(--ink); font-weight: 600; }
+
+  .state-msg {
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 30px 0;
+  }
+
+  .refresh-row { text-align: center; margin-top: 16px; }
+  .btn-refresh {
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: none;
+    border: 1px solid var(--brass-line);
+    border-radius: 999px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<main class="stage">
+  <article class="card" aria-label="頭家需求牆">
+    <a class="back-link" href="index.html">‹ 回名片首頁</a>
+
+    <header class="hero">
+      <div class="action-icon-lg" aria-hidden="true">📌</div>
+      <p class="eyebrow">雲嘉南頭家 AI 導入交流群</p>
+      <h1>頭家需求牆</h1>
+      <p class="sub">缺工、缺料、缺場地？把你手上有的、你在找的貼上來，<br>頭家互相支援，看到需要的直接聯絡對方。</p>
+    </header>
+
+    <hr class="hairline" />
+
+    <div class="toolbar">
+      <span class="count" id="countLabel">載入中…</span>
+      <button class="btn-post" id="postToggle" onclick="toggleForm()">+ 貼供給或需求</button>
+    </div>
+
+    <form class="post-form" id="postForm" onsubmit="return submitPost(event)">
+      <div class="type-toggle">
+        <div class="type-opt" data-type="supply" onclick="pickType('supply')">🟢 我有（供給）</div>
+        <div class="type-opt" data-type="demand" onclick="pickType('demand')">🔴 我要找（需求）</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="fCategory">分類<span class="req">*</span></label>
+        <select id="fCategory" onchange="checkForm()">
+          <option value="">請選擇</option>
+          <option value="人力／外籍勞工">人力／外籍勞工</option>
+          <option value="工程點工">工程點工</option>
+          <option value="報廢回收">報廢回收</option>
+          <option value="場地／倉儲">場地／倉儲</option>
+          <option value="原物料／設備">原物料／設備</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="fTitle">一句話說明<span class="req">*</span></label>
+        <input type="text" id="fTitle" maxlength="60" placeholder="例如：有外籍勞工人力可支援" oninput="checkForm()" />
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="fDetail">補充說明<span class="opt">（選填）</span></label>
+        <textarea id="fDetail" maxlength="300" placeholder="地點、數量、條件等細節"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="fContact">聯絡方式<span class="opt">（選填，方便頭家直接找你）</span></label>
+        <input type="text" id="fContact" maxlength="60" placeholder="LINE ID／電話" />
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="fPostedBy">怎麼稱呼你<span class="opt">（選填）</span></label>
+        <input type="text" id="fPostedBy" maxlength="30" placeholder="暱稱或公司名" />
+      </div>
+
+      <button class="btn-submit" id="submitBtn" type="submit">貼上需求牆</button>
+      <p class="consent">貼文內容群組內公開可見，請勿留下不希望公開的個資。</p>
+    </form>
+
+    <div class="chips">
+      <button class="chip on" data-filter="all" onclick="setFilter('all')">全部</button>
+      <button class="chip" data-filter="supply" onclick="setFilter('supply')">🟢 供給</button>
+      <button class="chip" data-filter="demand" onclick="setFilter('demand')">🔴 需求</button>
+    </div>
+
+    <div class="list" id="list"></div>
+
+    <div class="refresh-row">
+      <button class="btn-refresh" onclick="loadItems()">🔄 重新整理</button>
+    </div>
+  </article>
+</main>
+
+<script>
+const SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzGAIQzvdusQRl5znfxE5KKuwmMUBiLK74vn25VcZK4nMDjDw_lnFDpkZgJWvZflVtaew/exec';
+
+let items = [];
+let filter = 'all';
+let selectedType = null;
+
+function toggleForm() {
+  const form = document.getElementById('postForm');
+  const btn = document.getElementById('postToggle');
+  const open = form.classList.toggle('open');
+  btn.classList.toggle('is-open', open);
+  btn.textContent = open ? '收起表單' : '+ 貼供給或需求';
+}
+
+function pickType(t) {
+  selectedType = t;
+  document.querySelectorAll('.type-opt').forEach(el => {
+    el.classList.toggle('selected', el.dataset.type === t);
+  });
+  checkForm();
+}
+
+function checkForm() {
+  const ok = selectedType && document.getElementById('fCategory').value && document.getElementById('fTitle').value.trim();
+  document.getElementById('submitBtn').classList.toggle('on', !!ok);
+}
+
+function setFilter(f) {
+  filter = f;
+  document.querySelectorAll('.chip').forEach(el => el.classList.toggle('on', el.dataset.filter === f));
+  render();
+}
+
+function timeAgo(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  const diffMin = Math.round((Date.now() - d.getTime()) / 60000);
+  if (diffMin < 1) return '剛剛';
+  if (diffMin < 60) return diffMin + ' 分鐘前';
+  const diffH = Math.round(diffMin / 60);
+  if (diffH < 24) return diffH + ' 小時前';
+  const diffD = Math.round(diffH / 24);
+  if (diffD < 30) return diffD + ' 天前';
+  return d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function render() {
+  const list = document.getElementById('list');
+  const filtered = items.filter(it => filter === 'all' || it.type === filter);
+
+  document.getElementById('countLabel').textContent = `共 ${items.length} 筆（${items.filter(i => i.type === 'supply').length} 供給／${items.filter(i => i.type === 'demand').length} 需求）`;
+
+  if (!filtered.length) {
+    list.innerHTML = `<p class="state-msg">${items.length ? '這個分類目前還沒有貼文' : '目前還沒有人貼，當第一個頭家！'}</p>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map(it => `
+    <article class="item">
+      <div class="item-head">
+        <span class="pill ${it.type}">${it.type === 'supply' ? '🟢 供給' : '🔴 需求'}</span>
+        <span class="item-cat">${escapeHtml(it.category)}</span>
+        <span class="item-time">${timeAgo(it.time)}</span>
+      </div>
+      <p class="item-title">${escapeHtml(it.title)}</p>
+      ${it.detail ? `<p class="item-detail">${escapeHtml(it.detail)}</p>` : ''}
+      <div class="item-foot">
+        ${it.postedBy ? `<span>${escapeHtml(it.postedBy)}</span>` : ''}
+        ${it.contact ? `<span>・聯絡：<span class="contact">${escapeHtml(it.contact)}</span></span>` : ''}
+      </div>
+    </article>`).join('');
+}
+
+async function loadItems() {
+  document.getElementById('countLabel').textContent = '載入中…';
+  try {
+    const res = await fetch(SHEET_WEBHOOK + '?source=needs_board');
+    const data = await res.json();
+    items = (data.items || []).map(it => ({
+      ...it,
+      type: it.type && it.type.indexOf('需求') === 0 ? 'demand' : 'supply',
+    })).sort((a, b) => new Date(b.time) - new Date(a.time));
+  } catch (_) {
+    document.getElementById('countLabel').textContent = '讀取失敗，請按重新整理再試一次';
+    items = [];
+  }
+  render();
+}
+
+async function submitPost(evt) {
+  evt.preventDefault();
+  const ok = selectedType && document.getElementById('fCategory').value && document.getElementById('fTitle').value.trim();
+  if (!ok) return false;
+
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '送出中…';
+  btn.classList.remove('on');
+
+  const payload = {
+    source: 'needs_board',
+    needType: selectedType,
+    category: document.getElementById('fCategory').value,
+    title: document.getElementById('fTitle').value.trim(),
+    detail: document.getElementById('fDetail').value.trim(),
+    contact: document.getElementById('fContact').value.trim(),
+    postedBy: document.getElementById('fPostedBy').value.trim(),
+  };
+
+  try {
+    await fetch(SHEET_WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+  } catch (_) {}
+
+  // 樂觀更新：先把自己這篇塞進清單最前面，不用等重新整理
+  items.unshift({
+    id: 'local-' + Date.now(),
+    time: new Date().toISOString(),
+    type: payload.needType,
+    category: payload.category,
+    title: payload.title,
+    detail: payload.detail,
+    contact: payload.contact,
+    postedBy: payload.postedBy,
+  });
+
+  document.getElementById('postForm').reset();
+  document.querySelectorAll('.type-opt').forEach(el => el.classList.remove('selected'));
+  selectedType = null;
+  btn.textContent = '貼上需求牆';
+  toggleForm();
+  render();
+}
+
+loadItems();
+</script>
+</body>
+</html>

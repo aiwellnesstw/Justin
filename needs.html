@@ -422,11 +422,6 @@
         <input type="text" id="fPostedBy" maxlength="30" placeholder="暱稱或公司名" />
       </div>
 
-      <div class="field">
-        <label class="field-label" for="fPassphrase">通關密語<span class="req">*</span><span class="opt">（群組公告過，防止外流亂貼）</span></label>
-        <input type="text" id="fPassphrase" maxlength="30" oninput="checkForm()" />
-      </div>
-
       <p class="form-error" id="formError" hidden></p>
       <button class="btn-submit" id="submitBtn" type="submit">貼上需求牆</button>
       <p class="consent">貼文內容群組內公開可見，請勿留下不希望公開的個資。</p>
@@ -474,8 +469,7 @@ function pickType(t) {
 function checkForm() {
   const ok = selectedType
     && document.getElementById('fCategory').value
-    && document.getElementById('fTitle').value.trim()
-    && document.getElementById('fPassphrase').value.trim();
+    && document.getElementById('fTitle').value.trim();
   document.getElementById('submitBtn').classList.toggle('on', !!ok);
 }
 
@@ -580,8 +574,7 @@ async function submitPost(evt) {
 
   const ok = selectedType
     && document.getElementById('fCategory').value
-    && document.getElementById('fTitle').value.trim()
-    && document.getElementById('fPassphrase').value.trim();
+    && document.getElementById('fTitle').value.trim();
   if (!ok) return false;
 
   const btn = document.getElementById('submitBtn');
@@ -596,29 +589,9 @@ async function submitPost(evt) {
     detail: document.getElementById('fDetail').value.trim(),
     contact: document.getElementById('fContact').value.trim(),
     postedBy: document.getElementById('fPostedBy').value.trim(),
-    passphrase: document.getElementById('fPassphrase').value.trim(),
   };
 
-  // 密語先用 GET 問一次（GET 回應讀得到，POST 回應在這個部署環境讀不到）
-  try {
-    const checkRes = await fetch(SHEET_WEBHOOK + '?source=needs_board&checkPassphrase=' + encodeURIComponent(payload.passphrase));
-    const checkData = await checkRes.json();
-    if (!checkData || !checkData.ok) {
-      errEl.textContent = '通關密語不對，請跟群組公告核對後再試一次。';
-      errEl.hidden = false;
-      btn.textContent = '貼上需求牆';
-      btn.classList.add('on');
-      return false;
-    }
-  } catch (_) {
-    errEl.textContent = '網路怪怪的，檢查不了密語，請稍後再試一次。';
-    errEl.hidden = false;
-    btn.textContent = '貼上需求牆';
-    btn.classList.add('on');
-    return false;
-  }
-
-  // 密語通過，真正寫入用 no-cors fire-and-forget（跟其他表單同一套寫法，doPost 會再驗一次密語）
+  // 寫入用 no-cors fire-and-forget（跟其他表單同一套寫法）
   try {
     await fetch(SHEET_WEBHOOK, {
       method: 'POST',

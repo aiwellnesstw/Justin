@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>小日｜每天一分鐘的心情小夥伴</title>
+<meta name="description" content="每天花一分鐘記心情，跟小日聊幾句。" />
+<meta name="theme-color" content="#fff4e0" />
+<meta name="robots" content="noindex" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="小日" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%A4%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+
+<style>
+  :root {
+    --bg: #fff4e0;
+    --card: #fffaf0;
+    --ink: #3b2f24;
+    --ink-soft: #7a6a58;
+    --line: #ecd9b8;
+    --sun: #f2a43a;
+    --sun-deep: #d9822b;
+    --sun-soft: #f2a43a26;
+    --bubble-me: #f2a43a;
+    --bubble-me-ink: #3b2400;
+    --bubble-ai: #fffaf0;
+    --alert: #c2452f;
+    --alert-soft: #c2452f1a;
+    --m1: #d9604c; --m2: #e6925c; --m3: #e8c35a; --m4: #9bc47a; --m5: #5aae85;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1d1710; --card: #292017; --ink: #f3e7d3; --ink-soft: #b3a38d; --line: #433625;
+      --sun: #f2a43a; --sun-deep: #f2b45a; --sun-soft: #f2a43a26;
+      --bubble-me: #d9822b; --bubble-me-ink: #fff4e0; --bubble-ai: #292017;
+      --alert: #ee7d66; --alert-soft: #ee7d6626;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1d1710; --card: #292017; --ink: #f3e7d3; --ink-soft: #b3a38d; --line: #433625;
+    --sun: #f2a43a; --sun-deep: #f2b45a; --sun-soft: #f2a43a26;
+    --bubble-me: #d9822b; --bubble-me-ink: #fff4e0; --bubble-ai: #292017;
+    --alert: #ee7d66; --alert-soft: #ee7d6626;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    font-size: 16px; line-height: 1.6;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .app { max-width: 560px; margin: 0 auto; min-height: 100%; display: flex; flex-direction: column; padding: 0 16px; }
+  header { padding: 18px 0 8px; display: flex; align-items: center; gap: 10px; }
+  header .logo { font-size: 28px; }
+  header h1 { font-size: 20px; margin: 0; }
+  header .who { margin-left: auto; font-size: 14px; color: var(--ink-soft); background: none; border: 0; padding: 4px 8px; }
+  main { flex: 1; padding-bottom: 96px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; margin: 12px 0; }
+  .card h2 { font-size: 18px; margin: 0 0 6px; }
+  .muted { color: var(--ink-soft); font-size: 14px; }
+  .btn { background: var(--sun); color: #3b2400; border: 0; border-radius: 999px; padding: 12px 22px; font-weight: 600; }
+  .btn:disabled { opacity: .45; cursor: default; }
+  .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--ink); font-weight: 500; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+  /* tab bar */
+  nav { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+  nav .in { max-width: 560px; margin: 0 auto; display: flex; }
+  nav button { flex: 1; background: none; border: 0; padding: 10px 0 8px; color: var(--ink-soft); font-size: 13px; }
+  nav button .ic { display: block; font-size: 22px; line-height: 1.2; }
+  nav button.on { color: var(--sun-deep); font-weight: 600; }
+
+  /* mood + tags */
+  .moods { display: flex; justify-content: space-between; gap: 6px; margin: 14px 0 6px; }
+  .mood { flex: 1; background: var(--bg); border: 2px solid transparent; border-radius: 16px; padding: 10px 0 6px; font-size: 30px; line-height: 1.1; }
+  .mood small { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+  .mood.on { border-color: var(--sun); background: var(--sun-soft); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 16px; }
+  .tag { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 15px; }
+  .tag.on { background: var(--sun-soft); border-color: var(--sun); color: var(--sun-deep); font-weight: 600; }
+
+  /* chat */
+  .chip { text-align: center; font-size: 13px; color: var(--ink-soft); margin: 6px 0 12px; }
+  .msgs { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 8px; }
+  .bubble { max-width: 84%; padding: 10px 14px; border-radius: 18px; white-space: pre-wrap; word-break: break-word; }
+  .bubble.ai { background: var(--bubble-ai); border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 6px; }
+  .bubble.me { background: var(--bubble-me); color: var(--bubble-me-ink); align-self: flex-end; border-bottom-right-radius: 6px; }
+  .composer { position: sticky; bottom: 70px; background: var(--bg); padding: 8px 0; }
+  .composer .box { display: flex; gap: 8px; }
+  .composer textarea { flex: 1; resize: none; border: 1px solid var(--line); border-radius: 18px; padding: 10px 14px; background: var(--card); color: var(--ink); font: inherit; max-height: 120px; }
+  .composer textarea:focus { outline: 2px solid var(--sun); }
+  .end { text-align: center; margin-top: 6px; }
+  .end button { background: none; border: 0; color: var(--ink-soft); text-decoration: underline; font-size: 14px; }
+
+  /* loader */
+  .loader { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-size: 14px; padding: 6px 4px; }
+  .sun { font-size: 26px; display: inline-block; animation: wob 1.3s ease-in-out infinite; transform-origin: 50% 80%; }
+  @keyframes wob { 0%,100% { transform: rotate(-12deg) scale(1); } 50% { transform: rotate(12deg) scale(1.12); } }
+  @media (prefers-reduced-motion: reduce) { .sun { animation: none; } }
+
+  /* alert */
+  .crisis { background: var(--alert-soft); border: 1px solid var(--alert); border-radius: 16px; padding: 14px 16px; margin: 12px 0; }
+  .crisis b { color: var(--alert); }
+  .crisis a { color: var(--alert); font-weight: 700; }
+
+  /* calendar */
+  .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .cal-head button { background: none; border: 1px solid var(--line); border-radius: 999px; width: 38px; height: 38px; }
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .grid .dow { text-align: center; font-size: 12px; color: var(--ink-soft); }
+  .day { aspect-ratio: 1; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; padding: 0; color: var(--ink-soft); }
+  .day.has { color: #2a1d0b; font-weight: 700; border: 0; }
+  .day.today { outline: 2px solid var(--sun); }
+  .day.sel { box-shadow: 0 0 0 3px var(--ink); }
+  .day:disabled { opacity: .35; cursor: default; }
+  .detail { margin-top: 14px; }
+
+  /* modal */
+  .overlay { position: fixed; inset: 0; background: #0008; display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 10; }
+  .modal { background: var(--card); border-radius: 20px; padding: 22px; max-width: 420px; width: 100%; }
+  .modal input { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font: inherit; background: var(--bg); color: var(--ink); margin: 10px 0 6px; }
+  .hidden { display: none !important; }
+  .toast { position: fixed; left: 50%; bottom: 88px; transform: translateX(-50%); background: var(--ink); color: var(--bg); border-radius: 999px; padding: 8px 18px; font-size: 14px; z-index: 20; max-width: 90%; text-align: center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <span class="logo">🌤️</span><h1>小日</h1>
+    <button class="who" id="whoBtn" aria-label="修改暱稱"></button>
+  </header>
+
+  <main id="main"></main>
+</div>
+
+<nav><div class="in">
+  <button data-tab="today" class="on"><span class="ic">☀️</span>今天</button>
+  <button data-tab="diary"><span class="ic">📅</span>日記</button>
+  <button data-tab="pattern"><span class="ic">🔍</span>規律</button>
+</div></nav>
+
+<div class="overlay hidden" id="overlay"><div class="modal" id="modal"></div></div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---------- 設定 ----------
+  var API = 'https://script.google.com/macros/s/AKfycbzUzJhHfAcJle8YfgNjldAs0yjCrZivE6Yuy_1Afl2Y3AVcgVa-9ZUONraESjoq3eXulQ/exec';
+  var MAX_USER_TURNS = 5;     // 使用者自己打的話最多 5 句（後端上限 6，其中 1 句是系統代發的開場）
+  var MAX_LEN = 500;
+  var MOODS = [
+    { v: 1, e: '😣', t: '很糟' }, { v: 2, e: '😕', t: '不太好' }, { v: 3, e: '😐', t: '普通' },
+    { v: 4, e: '🙂', t: '不錯' }, { v: 5, e: '😄', t: '很棒' }
+  ];
+  var TAGS = ['工作', '人際', '錢', '睡眠', '家人', '健康', '其他'];
+  var WAIT_TEXTS = ['小日在泡茶…', '正在翻你的小本本…', '再等我 3 秒喔…', '小日伸了個懶腰…', '馬上來～'];
+  var CRISIS_RE = /自殺|不想活|想死|結束生命|傷害自己|輕生|自殘|活不下去/;
+  var OPENER = '我剛記錄了今天的心情和標籤，你先開口關心我一句吧。';
+
+  // ---------- 儲存（localStorage 可能不可用） ----------
+  var mem = {};
+  function lsGet(k) { try { var v = localStorage.getItem(k); return v === null ? (mem[k] || null) : v; } catch (e) { return mem[k] || null; } }
+  function lsSet(k, v) { mem[k] = v; try { localStorage.setItem(k, v); } catch (e) {} }
+
+  var userId = lsGet('xr_uid');
+  if (!userId) {
+    userId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : 'u-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    lsSet('xr_uid', userId);
+  }
+  var nickname = lsGet('xr_nick') || '';
+
+  // ---------- 狀態 ----------
+  var state = {
+    tab: 'today',
+    step: 'pick',            // pick | chat | done
+    mood: 0, tags: [],
+    messages: [],            // 送給後端的完整訊息（含系統代發開場）
+    userTurns: 0,
+    busy: false,
+    crisis: false,
+    todayEntry: null,
+    month: taipeiToday().slice(0, 7),
+    cache: {},               // month -> entries
+    sel: null
+  };
+
+  var $main = document.getElementById('main');
+  var $who = document.getElementById('whoBtn');
+  var waitTimer = null;
+
+  // ---------- 工具 ----------
+  function taipeiToday() { return new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10); }
+  function el(tag, props, kids) {
+    var n = document.createElement(tag);
+    if (props) for (var k in props) {
+      if (k === 'class') n.className = props[k];
+      else if (k === 'text') n.textContent = props[k];
+      else if (k.slice(0, 2) === 'on') n.addEventListener(k.slice(2), props[k]);
+      else n.setAttribute(k, props[k]);
+    }
+    (kids || []).forEach(function (c) { if (c) n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return n;
+  }
+  function toast(msg) {
+    var t = el('div', { class: 'toast', text: msg });
+    document.body.appendChild(t);
+    setTimeout(function () { t.remove(); }, 2600);
+  }
+  function moodOf(v) { return MOODS[v - 1] || MOODS[2]; }
+
+  // 呼叫後端：回傳不是 JSON（部署後偶爾回錯誤頁）就自動重試，最多 3 次
+  function api(payload, timeoutMs) {
+    payload.userId = userId;
+    if (payload.nickname === undefined && payload.action !== 'getEntries' && payload.action !== 'saveEntry') payload.nickname = nickname || '朋友';
+    var attempt = 0;
+    function once() {
+      attempt++;
+      var ctl = new AbortController();
+      var timer = setTimeout(function () { ctl.abort(); }, timeoutMs || 30000);
+      return fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), signal: ctl.signal })
+        .then(function (r) { return r.text(); })
+        .then(function (t) { clearTimeout(timer); return JSON.parse(t); })
+        .catch(function (err) {
+          clearTimeout(timer);
+          if (attempt < 4) return new Promise(function (res) { setTimeout(res, 1500 * attempt); }).then(once);
+          throw err;
+        });
+    }
+    return once();
+  }
+
+  function showLoader(host) {
+    var i = 0;
+    var txt = el('span', { text: WAIT_TEXTS[0] });
+    var box = el('div', { class: 'loader', role: 'status' }, [el('span', { class: 'sun', text: '🌞' }), txt]);
+    host.appendChild(box);
+    var timer = setInterval(function () { i = (i + 1) % WAIT_TEXTS.length; txt.textContent = WAIT_TEXTS[i]; }, 1800);
+    waitTimer = timer;
+    return function stop() { clearInterval(timer); box.remove(); };
+  }
+
+  // ---------- 暱稱 ----------
+  function askNickname(first) {
+    var $o = document.getElementById('overlay'), $m = document.getElementById('modal');
+    $m.innerHTML = '';
+    var input = el('input', { type: 'text', maxlength: '20', placeholder: '例如：爸、小明', value: nickname, 'aria-label': '暱稱' });
+    var err = el('div', { class: 'muted', style: 'color:var(--alert)' });
+    var ok = el('button', { class: 'btn', text: first ? '開始使用' : '儲存' });
+    $m.appendChild(el('h2', { text: first ? '嗨，我是小日 🌤️' : '改暱稱' }));
+    $m.appendChild(el('div', { text: first ? '你想讓我怎麼稱呼你？' : '想讓我怎麼稱呼你？' }));
+    $m.appendChild(input);
+    $m.appendChild(err);
+    if (first) $m.appendChild(el('p', { class: 'muted', text: '小日是 Justin 做的小實驗。你的心情紀錄會存在他的 Google 試算表裡，技術上他看得到，他答應不會去翻。真的不想被看到的事，就別寫在這裡。小日不是醫生，也不能取代專業協助。' }));
+    var row = el('div', { class: 'row' }, [ok]);
+    if (!first) row.appendChild(el('button', { class: 'btn ghost', text: '取消', onclick: function () { $o.classList.add('hidden'); } }));
+    $m.appendChild(row);
+    ok.addEventListener('click', function () {
+      var v = input.value.trim();
+      if (!v) { err.textContent = '請輸入一個暱稱'; return; }
+      nickname = v.slice(0, 20); lsSet('xr_nick', nickname);
+      $who.textContent = nickname + ' ✎';
+      $o.classList.add('hidden');
+      api({ action: 'register', nickname: nickname }).catch(function () {});
+      if (first) boot();
+    });
+    $o.classList.remove('hidden');
+    setTimeout(function () { input.focus(); }, 50);
+  }
+  $who.addEventListener('click', function () { askNickname(false); });
+
+  // ---------- 分頁 ----------
+  document.querySelectorAll('nav button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.tab = b.getAttribute('data-tab');
+      document.querySelectorAll('nav button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      render();
+    });
+  });
+
+  function render() {
+    if (waitTimer) { clearInterval(waitTimer); waitTimer = null; }
+    $main.innerHTML = '';
+    if (state.tab === 'today') renderToday();
+    else if (state.tab === 'diary') renderDiary();
+    else renderPattern();
+  }
+
+  // ---------- 今天 ----------
+  function renderToday() {
+    if (state.step === 'pick') return renderPick();
+    if (state.step === 'chat') return renderChat();
+    return renderDone();
+  }
+
+  function renderPick() {
+    var t = state.todayEntry;
+    if (t && !state.redo) {
+      var m = moodOf(t.mood);
+      $main.appendChild(el('div', { class: 'card' }, [
+        el('h2', { text: '今天已經記錄過囉 ' + m.e }),
+        el('p', { text: t.summary || ('今天心情' + m.t + '。') }),
+        el('div', { class: 'muted', text: (t.tags || []).join('、') }),
+        el('div', { class: 'row', style: 'margin-top:12px' }, [el('button', { class: 'btn ghost', text: '重新記錄一次', onclick: function () { state.redo = true; render(); } })])
+      ]));
+      return;
+    }
+    var card = el('div', { class: 'card' });
+    card.appendChild(el('h2', { text: (nickname || '嗨') + '，今天心情如何？' }));
+    var moods = el('div', { class: 'moods', role: 'radiogroup' });
+    MOODS.forEach(function (m) {
+      moods.appendChild(el('button', {
+        class: 'mood' + (state.mood === m.v ? ' on' : ''), role: 'radio', 'aria-checked': String(state.mood === m.v),
+        onclick: function () { state.mood = m.v; render(); }
+      }, [m.e, el('small', { text: m.t })]));
+    });
+    card.appendChild(moods);
+    card.appendChild(el('div', { class: 'muted', text: '跟什麼有關？（可以多選，也可以不選）' }));
+    var tags = el('div', { class: 'tags' });
+    TAGS.forEach(function (tg) {
+      var on = state.tags.indexOf(tg) >= 0;
+      tags.appendChild(el('button', {
+        class: 'tag' + (on ? ' on' : ''), 'aria-pressed': String(on),
+        onclick: function () { var i = state.tags.indexOf(tg); if (i >= 0) state.tags.splice(i, 1); else state.tags.push(tg); render(); }
+      }, [tg]));
+    });
+    card.appendChild(tags);
+    var chatBtn = el('button', { class: 'btn', text: '跟小日聊聊', onclick: startChat });
+    var saveBtn = el('button', { class: 'btn ghost', text: '只記錄就好', onclick: function () { finish(false); } });
+    if (!state.mood) { chatBtn.disabled = true; saveBtn.disabled = true; }
+    card.appendChild(el('div', { class: 'row' }, [chatBtn, saveBtn]));
+    $main.appendChild(card);
+  }
+
+  function startChat() {
+    if (!state.mood || state.busy) return;
+    state.step = 'chat';
+    state.messages = [{ role: 'user', content: OPENER }];
+    state.userTurns = 0; state.crisis = false;
+    render();
+    askAI();
+  }
+
+  function renderChat() {
+    var m = moodOf(state.mood);
+    $main.appendChild(el('div', { class: 'chip', text: '你選了：' + m.e + ' ' + m.t + (state.tags.length ? ' · ' + state.tags.join('、') : '') }));
+    var msgs = el('div', { class: 'msgs', id: 'msgs' });
+    state.messages.forEach(function (x, i) {
+      if (i === 0) return;   // 系統代發的開場不顯示
+      msgs.appendChild(el('div', { class: 'bubble ' + (x.role === 'user' ? 'me' : 'ai'), text: x.content }));
+    });
+    $main.appendChild(msgs);
+    if (state.crisis) $main.appendChild(crisisCard());
+    var tail = el('div', { id: 'tail' });
+    $main.appendChild(tail);
+    if (state.busy) { showLoader(tail); }
+    var last = state.messages[state.messages.length - 1];
+    var canType = !state.busy && last && last.role === 'assistant' && state.userTurns < MAX_USER_TURNS;
+    if (state.userTurns >= MAX_USER_TURNS && !state.busy) {
+      tail.appendChild(el('div', { class: 'chip', text: '今天聊得夠多了，我幫你收個尾～' }));
+    }
+    if (canType) {
+      var ta = el('textarea', { rows: '1', maxlength: String(MAX_LEN), placeholder: '想說什麼都可以…', 'aria-label': '輸入訊息' });
+      var send = el('button', { class: 'btn', text: '送出', onclick: function () { submit(ta); } });
+      ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); submit(ta); } });
+      ta.addEventListener('input', function () { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 120) + 'px'; });
+      $main.appendChild(el('div', { class: 'composer' }, [el('div', { class: 'box' }, [ta, send])]));
+      setTimeout(function () { ta.focus(); }, 30);
+    }
+    if (!state.busy && last && last.role === 'user') {
+      // 上一次呼叫失敗，使用者最後的話還沒得到回覆：提供重試
+      tail.appendChild(el('div', { class: 'row', style: 'justify-content:center' }, [el('button', { class: 'btn', text: '再試一次', onclick: askAI })]));
+    }
+    if (!state.busy) {
+      $main.appendChild(el('div', { class: 'end' }, [el('button', { text: '今天先到這', onclick: function () { finish(true); } })]));
+    }
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  function submit(ta) {
+    var text = ta.value.trim();
+    if (!text || state.busy) return;
+    if (text.length > MAX_LEN) { toast('一次最多 ' + MAX_LEN + ' 個字喔'); return; }
+    state.messages.push({ role: 'user', content: text });
+    state.userTurns++;
+    if (CRISIS_RE.test(text)) state.crisis = true;
+    askAI();
+  }
+
+  function askAI() {
+    state.busy = true; render();
+    api({ action: 'chat', mood: state.mood, tags: state.tags, messages: state.messages }, 40000).then(function (r) {
+      state.busy = false;
+      if (r && r.ok) {
+        state.messages.push({ role: 'assistant', content: r.reply });
+        if (r.crisis) state.crisis = true;
+      } else {
+        var why = r && r.reason;
+        toast(why === 'limit' ? '今天聊太多囉，明天再聊吧' : '小日現在有點累，可以再試一次，或先把心情記下來');
+      }
+      render();
+    }).catch(function () {
+      state.busy = false;
+      toast('網路好像不太穩，可以再試一次，或先把心情記下來');
+      render();
+    });
+  }
+
+  // 收尾：產生小結 → 存檔
+  function finish(hasChat) {
+    if (state.busy) return;
+    state.busy = true;
+    $main.innerHTML = '';
+    var host = el('div', { class: 'card' }, [el('h2', { text: '正在幫你收好今天…' })]);
+    $main.appendChild(host);
+    var stop = showLoader(host);
+    // 沒聊（或 AI 一句都沒回）就不送對話，後端會直接用心情與標籤產生小結
+    var msgs = (hasChat && state.messages.length > 1) ? state.messages : [];
+    var fallback = '今天心情' + moodOf(state.mood).t + (state.tags.length ? '，關鍵字：' + state.tags.join('、') : '') + '。';
+    api({ action: 'summarize', mood: state.mood, tags: state.tags, messages: msgs }, 40000)
+      .then(function (r) { return (r && r.ok && r.summary) ? r.summary : fallback; })
+      .catch(function () { return fallback; })
+      .then(function (summary) {
+        return api({ action: 'saveEntry', date: taipeiToday(), mood: state.mood, tags: state.tags, summary: summary })
+          .then(function (r) { return { ok: !!(r && r.ok), summary: summary }; })
+          .catch(function () { return { ok: false, summary: summary }; });
+      })
+      .then(function (res) {
+        stop(); state.busy = false;
+        state.doneSummary = res.summary; state.saveFailed = !res.ok;
+        if (res.ok) {
+          state.todayEntry = { date: taipeiToday(), mood: state.mood, tags: state.tags.slice(), summary: res.summary };
+          delete state.cache[taipeiToday().slice(0, 7)];
+        }
+        state.step = 'done'; render();
+      });
+  }
+
+  function renderDone() {
+    var m = moodOf(state.mood);
+    if (state.crisis) $main.appendChild(crisisCard());
+    var card = el('div', { class: 'card' }, [
+      el('h2', { text: state.saveFailed ? '這次沒存成功 😢' : '收好了 ' + m.e }),
+      el('p', { text: state.doneSummary || '' })
+    ]);
+    if (state.saveFailed) {
+      card.appendChild(el('p', { class: 'muted', text: '網路好像出了點問題，等一下再試一次就好。' }));
+      card.appendChild(el('div', { class: 'row' }, [el('button', { class: 'btn', text: '再存一次', onclick: function () { retrySave(); } })]));
+    } else {
+      card.appendChild(el('p', { class: 'muted', text: '辛苦了，明天見。' }));
+    }
+    $main.appendChild(card);
+    if (!state.saveFailed) {
+      state.step = 'pick'; state.redo = false; state.mood = 0; state.tags = []; state.messages = [];
+    }
+  }
+
+  function retrySave() {
+    api({ action: 'saveEntry', date: taipeiToday(), mood: state.mood, tags: state.tags, summary: state.doneSummary || '' })
+      .then(function (r) {
+        if (r && r.ok) {
+          state.saveFailed = false;
+          state.todayEntry = { date: taipeiToday(), mood: state.mood, tags: state.tags.slice(), summary: state.doneSummary };
+          delete state.cache[taipeiToday().slice(0, 7)];
+          render();
+        } else toast('還是沒成功，等一下再試');
+      }).catch(function () { toast('還是沒成功，等一下再試'); });
+  }
+
+  function crisisCard() {
+    return el('div', { class: 'crisis', role: 'alert' }, [
+      el('b', { text: '如果現在真的很難受，請先找一個你信任的人陪你。' }),
+      el('div', { text: '你也可以打 ' }),
+      (function () { var a = el('a', { href: 'tel:1925', text: '1925 安心專線' }); return a; })(),
+      document.createTextNode('（24 小時免費，有人會聽你說）。')
+    ]);
+  }
+
+  // ---------- 日記 ----------
+  function loadMonth(month) {
+    if (state.cache[month]) return Promise.resolve(state.cache[month]);
+    return api({ action: 'getEntries', month: month }).then(function (r) {
+      if (r && r.ok) { state.cache[month] = r.entries; return r.entries; }
+      throw new Error('load');
+    });
+  }
+
+  function renderDiary() {
+    var month = state.month;
+    var parts = month.split('-'), y = +parts[0], mo = +parts[1];
+    var card = el('div', { class: 'card' });
+    var head = el('div', { class: 'cal-head' }, [
+      el('button', { 'aria-label': '上個月', text: '‹', onclick: function () { shift(-1); } }),
+      el('b', { text: y + ' 年 ' + mo + ' 月' }),
+      el('button', { 'aria-label': '下個月', text: '›', onclick: function () { shift(1); } })
+    ]);
+    card.appendChild(head);
+    var body = el('div');
+    card.appendChild(body);
+    $main.appendChild(card);
+    var detail = el('div', { class: 'detail' });
+    $main.appendChild(detail);
+
+    function shift(d) {
+      var dt = new Date(Date.UTC(y, mo - 1 + d, 1));
+      state.month = dt.toISOString().slice(0, 7); state.sel = null; render();
+    }
+
+    var stop = showLoader(body);
+    loadMonth(month).then(function (entries) {
+      stop();
+      var by = {}; entries.forEach(function (e) { by[e.date] = e; });
+      var grid = el('div', { class: 'grid' });
+      ['日', '一', '二', '三', '四', '五', '六'].forEach(function (d) { grid.appendChild(el('div', { class: 'dow', text: d })); });
+      var first = new Date(Date.UTC(y, mo - 1, 1)).getUTCDay();
+      var days = new Date(Date.UTC(y, mo, 0)).getUTCDate();
+      for (var i = 0; i < first; i++) grid.appendChild(el('div'));
+      var today = taipeiToday();
+      for (var d = 1; d <= days; d++) {
+        (function (d) {
+          var ds = month + '-' + (d < 10 ? '0' + d : d);
+          var e = by[ds];
+          var b = el('button', { class: 'day' + (e ? ' has' : '') + (ds === today ? ' today' : '') + (state.sel === ds ? ' sel' : ''), text: String(d), 'aria-label': mo + '月' + d + '日' + (e ? '，心情' + moodOf(e.mood).t : '，沒有紀錄') });
+          if (e) { b.style.background = 'var(--m' + e.mood + ')'; b.addEventListener('click', function () { state.sel = ds; render(); }); }
+          else b.disabled = true;
+          grid.appendChild(b);
+        })(d);
+      }
+      body.appendChild(grid);
+      if (!entries.length) body.appendChild(el('p', { class: 'muted', text: '這個月還沒有紀錄。' }));
+      if (state.sel && by[state.sel]) {
+        var e = by[state.sel], m = moodOf(e.mood);
+        detail.appendChild(el('div', { class: 'card' }, [
+          el('h2', { text: state.sel + ' ' + m.e + ' ' + m.t }),
+          el('p', { text: e.summary || '（沒有小結）' }),
+          el('div', { class: 'muted', text: (e.tags || []).join('、') })
+        ]));
+      }
+    }).catch(function () {
+      stop();
+      body.appendChild(el('p', { class: 'muted', text: '日記讀不出來，等一下再試試。' }));
+      body.appendChild(el('button', { class: 'btn ghost', text: '重試', onclick: function () { render(); } }));
+    });
+  }
+
+  // ---------- 規律 ----------
+  function renderPattern() {
+    var card = el('div', { class: 'card' }, [
+      el('h2', { text: '你的情緒規律 🔍' }),
+      el('p', { text: '再記錄一陣子就會出現。' }),
+      el('p', { class: 'muted', text: '大約累積 2 週的心情，小日才看得出你的低點通常在哪些事、星期幾。' })
+    ]);
+    $main.appendChild(card);
+    loadMonth(taipeiToday().slice(0, 7)).then(function (entries) {
+      card.appendChild(el('p', { class: 'muted', text: '這個月你已經記錄了 ' + entries.length + ' 天。' }));
+    }).catch(function () {});
+  }
+
+  // ---------- 啟動 ----------
+  function boot() {
+    $who.textContent = nickname + ' ✎';
+    render();
+    // 取得今天是否已記錄
+    loadMonth(taipeiToday().slice(0, 7)).then(function (entries) {
+      var t = taipeiToday();
+      for (var i = 0; i < entries.length; i++) if (entries[i].date === t) { state.todayEntry = entries[i]; break; }
+      if (state.tab === 'today' && state.step === 'pick') render();
+    }).catch(function () {});
+  }
+
+  if (!nickname) { $who.textContent = ''; askNickname(true); } else { boot(); }
+})();
+</script>
+</body>
+</html>

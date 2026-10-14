@@ -372,6 +372,7 @@
     }
     if (!state.busy && last && last.role === 'user') {
       // 上一次呼叫失敗，使用者最後的話還沒得到回覆：提供重試
+      if (state.err) tail.appendChild(el('div', { class: 'chip', text: state.err }));
       tail.appendChild(el('div', { class: 'row', style: 'justify-content:center' }, [el('button', { class: 'btn', text: '再試一次', onclick: askAI })]));
     }
     if (!state.busy) {
@@ -399,11 +400,13 @@
         if (r.crisis) state.crisis = true;
       } else {
         var why = r && r.reason;
+        state.err = '原因：' + (why || '無回應') + (r && r.detail ? '（' + r.detail + '）' : '');
         toast(why === 'limit' ? '今天聊太多囉，明天再聊吧' : '小日現在有點累，可以再試一次，或先把心情記下來');
       }
       render();
-    }).catch(function () {
+    }).catch(function (e) {
       state.busy = false;
+      state.err = '連線錯誤：' + (e && e.message ? e.message : e);
       toast('網路好像不太穩，可以再試一次，或先把心情記下來');
       render();
     });

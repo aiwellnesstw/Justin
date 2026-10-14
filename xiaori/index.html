@@ -118,6 +118,21 @@
   .day:disabled { opacity: .35; cursor: default; }
   .detail { margin-top: 14px; }
 
+  /* garden */
+  .gwrap { margin: 12px 0; }
+  .gtop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 14px; color: var(--ink-soft); }
+  .streak { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; font-size: 13px; font-weight: 700; color: var(--sun-deep); }
+  .garden { position: relative; height: 210px; border-radius: 20px; border: 1px solid var(--line); overflow: hidden;
+    background: linear-gradient(#ffe9c2 0%, #fff4e0 55%, #cfe6b0 55%, #b8d98f 100%); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .garden { background: linear-gradient(#3a2c1c 0%, #292017 55%, #3f5230 55%, #33441f 100%); } }
+  :root[data-theme="dark"] .garden { background: linear-gradient(#3a2c1c 0%, #292017 55%, #3f5230 55%, #33441f 100%); }
+  .garden .fl { position: absolute; font-size: 24px; line-height: 1; transform: translate(-50%, -50%); }
+  .garden .fl.new { font-size: 32px; animation: pop 1.6s ease-in-out infinite; }
+  @keyframes pop { 0%,100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.25); } }
+  @media (prefers-reduced-motion: reduce) { .garden .fl.new { animation: none; } }
+  .garden .pet { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); font-size: 36px; line-height: 1; }
+  .garden .say { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 6px 12px; font-size: 13px; max-width: 90%; text-align: center; }
+
   /* modal */
   .overlay { position: fixed; inset: 0; background: #0008; display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 10; }
   .modal { background: var(--card); border-radius: 20px; padding: 22px; max-width: 420px; width: 100%; }
@@ -298,6 +313,7 @@
 
   function renderPick() {
     var t = state.todayEntry;
+    renderGarden('pick');
     if (t && !state.redo) {
       var m = moodOf(t.mood);
       $main.appendChild(el('div', { class: 'card' }, [
@@ -456,6 +472,7 @@
       card.appendChild(el('p', { class: 'muted', text: '辛苦了，明天見。' }));
     }
     $main.appendChild(card);
+    if (!state.saveFailed) renderGarden('done');
     if (!state.saveFailed) {
       state.step = 'pick'; state.redo = false; state.mood = 0; state.tags = []; state.messages = [];
     }
@@ -489,6 +506,55 @@
       if (r && r.ok) { state.cache[month] = r.entries; return r.entries; }
       throw new Error('load');
     });
+  }
+
+  // ---------- 花園 ----------
+  var FLOWERS = { 1: '🍄', 2: '🍄', 3: '🌷', 4: '🌼', 5: '🌻' };
+  var FLOWER_NAMES = { 1: '蘑菇', 2: '蘑菇', 3: '鬱金香', 4: '小黃花', 5: '太陽花' };
+
+  function addDays(ds, n) { return new Date(Date.parse(ds + 'T00:00:00Z') + n * 86400000).toISOString().slice(0, 10); }
+  function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+
+  // 連續天數：從今天往回算；今天還沒記就從昨天算
+  function calcStreak(byDate, today) {
+    var d = byDate[today] ? today : addDays(today, -1), n = 0;
+    while (byDate[d]) { n++; d = addDays(d, -1); }
+    return n;
+  }
+
+  // mode：'pick' 打卡前／已記錄；'done' 剛打完卡（新花會跳動）
+  function renderGarden(mode) {
+    var host = el('div', { class: 'gwrap' });
+    $main.appendChild(host);
+    var today = taipeiToday(), month = today.slice(0, 7), prev = addDays(month + '-01', -1).slice(0, 7);
+    Promise.all([loadMonth(month), loadMonth(prev).catch(function () { return []; })]).then(function (res) {
+      var cur = res[0], by = {};
+      res[1].concat(cur).forEach(function (e) { by[e.date] = e; });
+      var streak = calcStreak(by, today);
+      var gtop = el('div', { class: 'gtop' }, [el('span', { text: (+month.slice(5)) + ' 月的花園 · 已種 ' + cur.length + ' 朵' })]);
+      if (streak > 0) gtop.appendChild(el('span', { class: 'streak', text: '🔥 連續 ' + streak + ' 天' }));
+      var g = el('div', { class: 'garden', role: 'img', 'aria-label': '這個月的花園，已種 ' + cur.length + ' 朵花' });
+      cur.forEach(function (e) {
+        var h = hash(e.date), isNew = mode === 'done' && e.date === today;
+        g.appendChild(el('span', {
+          class: 'fl' + (isNew ? ' new' : ''), text: FLOWERS[e.mood] || '🌷',
+          style: 'left:' + (8 + (h % 8400) / 100) + '%;top:' + (52 + ((h >>> 8) % 3600) / 100) + '%'
+        }));
+      });
+      var t = by[today], say;
+      if (mode === 'done' && t) say = '今天種了一朵' + FLOWER_NAMES[t.mood] + ' ' + FLOWERS[t.mood];
+      else if (t) say = '今天的花開好囉 ' + FLOWERS[t.mood];
+      else say = cur.length ? '今天還沒種花，來打卡吧' : '花園等你種第一朵';
+      g.appendChild(el('div', { class: 'say', text: say }));
+      g.appendChild(el('div', { class: 'pet', text: '🐥' }));
+      host.appendChild(gtop);
+      host.appendChild(g);
+      // 昨天的小結：讓人覺得小日記得你
+      var y = by[addDays(today, -1)];
+      if (mode === 'pick' && !t && y && y.summary) {
+        host.appendChild(el('div', { class: 'card' }, [el('h2', { text: '昨天的你' }), el('p', { text: y.summary })]));
+      }
+    }).catch(function () { host.remove(); });
   }
 
   function renderDiary() {

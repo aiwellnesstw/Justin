@@ -201,7 +201,7 @@
     position: relative;
     z-index: 3;
     margin: 0;
-    padding-right: 120px;
+    padding-right: 150px;
     font-size: 13.5px;
     font-weight: 500;
     color: var(--band-text-soft);
@@ -235,6 +235,7 @@
 
   .idblock .corp {
     margin: 8px 0 0;
+    max-width: 150px;
     font-size: 11.5px;
     color: var(--band-text-soft);
     letter-spacing: .02em;
@@ -245,21 +246,10 @@
     position: absolute;
     right: -6px;
     bottom: 0;
-    width: 176px;
+    width: 180px;
     height: auto;
     z-index: 2;
-    filter: drop-shadow(0 10px 14px rgba(6,12,22,.34));
-  }
-
-  .toon .wave {
-    transform-box: fill-box;
-    transform-origin: 22% 88%;
-    animation: wave 1.6s ease-in-out infinite alternate;
-  }
-
-  @keyframes wave {
-    from { transform: rotate(-1deg); }
-    to   { transform: rotate(5deg); }
+    filter: drop-shadow(0 8px 12px rgba(6,12,22,.3));
   }
 
   /* ---------- SECTION SHELL ---------- */
@@ -664,13 +654,9 @@
   .footbar b { color: var(--band-text); font-weight: 700; }
   .footbar .dot { color: var(--band-gold); }
 
-  @media (prefers-reduced-motion: reduce) {
-    .toon .wave { animation: none; }
-  }
-
   @media (max-width: 360px) {
     .headline { font-size: 40px; padding-right: 112px; }
-    .toon { width: 150px; }
+    .toon { width: 160px; }
   }
 </style>
 </head>
@@ -694,106 +680,10 @@
       <div class="idblock">
         <div class="name">翁仲昱</div>
         <span class="en">Justin Weng</span>
-        <p class="corp">中租迪和股份有限公司（中租-KY 5871）</p>
+        <p class="corp">中租迪和股份有限公司<br />（中租-KY 5871）</p>
       </div>
 
-      <svg class="toon" viewBox="0 0 200 300" aria-label="翁仲昱的 Q 版人物插畫" role="img">
-        <ellipse cx="100" cy="289" rx="48" ry="8" fill="rgba(0,0,0,0.22)"/>
-
-        <!-- legs + shoes -->
-        <rect x="82" y="222" width="17" height="58" rx="8" fill="#2b3a54"/>
-        <rect x="101" y="222" width="17" height="58" rx="8" fill="#2b3a54"/>
-        <ellipse cx="88" cy="282" rx="13" ry="6.5" fill="#20252e"/>
-        <ellipse cx="112" cy="282" rx="13" ry="6.5" fill="#20252e"/>
-
-        <!-- neck -->
-        <path d="M91 108 h18 v22 q-9 6 -18 0 z" fill="#e7ba93"/>
-
-        <!-- torso: jacket silhouette -->
-        <path d="M57 150
-                 C57 137 70 130 84 129
-                 L116 129
-                 C130 130 143 137 143 150
-                 L147 222
-                 C120 233 80 233 53 222 Z" fill="#d8c3a1"/>
-        <!-- white shirt V -->
-        <path d="M83 130 Q100 137 117 130 L112 180 Q100 189 88 180 Z" fill="#f6f2e9"/>
-        <!-- lapels -->
-        <path d="M57 138 L94 180 L86 189 L53 150 Z" fill="#c9ad7f"/>
-        <path d="M143 138 L106 180 L114 189 L147 150 Z" fill="#c9ad7f"/>
-        <path d="M86 130 Q100 124 114 130 L110 137 Q100 133 90 137 Z" fill="#c9ad7f"/>
-
-        <!-- lanyard + ID card -->
-        <path d="M93 132 L91 190" stroke="#20355a" stroke-width="5" stroke-linecap="round"/>
-        <path d="M107 132 L112 190" stroke="#20355a" stroke-width="5" stroke-linecap="round"/>
-        <rect x="90" y="186" width="22" height="28" rx="3" fill="#fbf8f1" stroke="#a9812f" stroke-width="1.4"/>
-        <circle cx="97" cy="196" r="3.6" fill="#20355a"/>
-        <rect x="93" y="203" width="16" height="2.6" rx="1.3" fill="#a9812f"/>
-        <rect x="93" y="208" width="11" height="2.2" rx="1.1" fill="#c9b58f"/>
-
-        <!-- left arm -->
-        <path d="M60 145
-                 C50 147 45 158 44 172
-                 L45 205
-                 C45 214 52 219 60 219
-                 C68 219 74 213 73 205
-                 L71 164
-                 C70 151 68 145 60 145 Z" fill="#d8c3a1"/>
-        <circle cx="59" cy="222" r="9" fill="#f1c9a6"/>
-
-        <!-- right arm raised in a wave -->
-        <g class="wave">
-          <circle cx="133" cy="143" r="16" fill="#d8c3a1"/>
-          <path d="M119 139
-                   C123 129 130 124 138 125
-                   C152 126 166 129 173 136
-                   C176 121 170 102 164 88
-                   L144 92
-                   C150 109 152 127 150 143
-                   C146 151 133 158 119 156 Z" fill="#d8c3a1"/>
-          <path d="M145 91 L165 87 L167 97 L148 102 Z" fill="#c9ad7f"/>
-          <g fill="#f1c9a6">
-            <circle cx="156" cy="83" r="9"/>
-            <rect x="145" y="67" width="5" height="15" rx="2.5"/>
-            <rect x="152" y="64" width="5" height="17" rx="2.5"/>
-            <rect x="159" y="65" width="5" height="16" rx="2.5"/>
-            <rect x="165.5" y="70" width="5" height="13" rx="2.5"/>
-            <ellipse cx="146" cy="87" rx="3.8" ry="5.2" transform="rotate(-32 146 87)"/>
-          </g>
-          <path d="M172 68 l1.8 4.6 l4.6 1.8 l-4.6 1.8 l-1.8 4.6 l-1.8 -4.6 l-4.6 -1.8 l4.6 -1.8 z" fill="#d7b067"/>
-        </g>
-
-        <!-- head -->
-        <ellipse cx="100" cy="60" rx="50" ry="46" fill="#241d1a"/>
-        <ellipse cx="56" cy="82" rx="7.5" ry="10" fill="#f1c9a6"/>
-        <ellipse cx="144" cy="82" rx="7.5" ry="10" fill="#f1c9a6"/>
-        <ellipse cx="100" cy="76" rx="45" ry="43" fill="#f4cda9"/>
-
-        <!-- hair -->
-        <path d="M55 80
-                 C53 42 76 24 100 24
-                 C124 24 146 40 146 76
-                 C146 60 136 52 121 54
-                 C116 44 105 41 97 49
-                 C91 38 74 42 68 55
-                 C60 59 56 67 55 80 Z" fill="#241d1a"/>
-        <path d="M146 76 C146 55 135 47 119 52 C130 57 136 67 136 80 C141 79 145 78 146 76 Z" fill="#2f2621"/>
-        <path d="M66 56 C76 47 91 44 102 50" stroke="#3a2f28" stroke-width="3" stroke-linecap="round" fill="none"/>
-
-        <!-- face -->
-        <path d="M72 70 Q81 64 90 69" stroke="#2b2320" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <path d="M110 69 Q119 64 128 70" stroke="#2b2320" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <ellipse cx="82" cy="84" rx="6.3" ry="7.4" fill="#2b2320"/>
-        <ellipse cx="118" cy="84" rx="6.3" ry="7.4" fill="#2b2320"/>
-        <circle cx="84.2" cy="81" r="2" fill="#fff"/>
-        <circle cx="120.2" cy="81" r="2" fill="#fff"/>
-        <path d="M75 88 Q82 92 89 88" stroke="#e9bd97" stroke-width="2.3" stroke-linecap="round" fill="none"/>
-        <path d="M111 88 Q118 92 125 88" stroke="#e9bd97" stroke-width="2.3" stroke-linecap="round" fill="none"/>
-        <ellipse cx="65" cy="95" rx="7.5" ry="4.6" fill="#f0a78e" opacity="0.55"/>
-        <ellipse cx="135" cy="95" rx="7.5" ry="4.6" fill="#f0a78e" opacity="0.55"/>
-        <path d="M97 94 Q100 98 103 94" stroke="#dba57f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M89 103 Q100 112 111 104" stroke="#9a5340" stroke-width="3" stroke-linecap="round" fill="none"/>
-      </svg>
+      <img class="toon" src="assets/justin-illust.png?v=1" width="400" height="516" alt="翁仲昱插畫肖像：揮手打招呼" decoding="async">
     </header>
 
     <section class="contact">
